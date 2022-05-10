@@ -3,6 +3,6 @@
   # Wanted Backend Pre Onboarding Project 003
  
 
-  <img height="200" width="200" src="![hu](https://user-images.githubusercontent.com/72593394/167657757-33582d06-0484-4f68-a64b-a1a5d5893a45.jpg)">
+  <img width="400" src="https://user-images.githubusercontent.com/72593394/167660736-32c28f81-39f0-43d2-9797-6e74b73b53a7.jpg">
 
 </div>
