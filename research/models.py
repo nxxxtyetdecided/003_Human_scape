@@ -5,7 +5,7 @@ from core.models import TimeStampModel
 
 
 class Research(TimeStampModel):
-    task_id = models.CharField(max_length=100, verbose_name='과제번호')
+    task_id = models.CharField(max_length=100, primary_key=True, verbose_name='과제번호')
     task_name = models.CharField(max_length=300, verbose_name='과제명')
     period = models.CharField(max_length=300, null=True, blank=True, verbose_name='연구기간')
     target_number = models.CharField(max_length=300, null=True, blank=True, verbose_name='전체목표연구대상자수')
