@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
 from pathlib import Path
 from my_settings import DATABASES, SECRET_KEY
 
@@ -47,6 +46,7 @@ THIRD_PARTY_APPS = [
     'django_extensions',
     'rest_framework',
     'corsheaders',
+    'drf_yasg',
 ]
 
 
@@ -171,3 +171,5 @@ REST_FRAMEWORK = {
        
     ]
 }
+
+# Swagger
