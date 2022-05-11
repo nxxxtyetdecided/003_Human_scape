@@ -35,6 +35,7 @@ class ResearchType(TimeStampModel):
 
 class ResearchAgency(TimeStampModel):
     agency = models.CharField(max_length=200, verbose_name='연구책임기관')
+    
     class Meta:
         db_table = 'agencies'
 
