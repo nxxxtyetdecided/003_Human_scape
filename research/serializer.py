@@ -8,6 +8,12 @@ from research.models import Research
 
 
 class ResearchSerializer(serializers.ModelSerializer):
+    scope = serializers.CharField(source='scope.scope')
+    type = serializers.CharField(source='type.type')
+    agency = serializers.CharField(source='agency.agency')
+    model = serializers.CharField(source='model.model')
+    department = serializers.CharField(source='department.department')
+
     class Meta:
         model = Research
         fields = (
