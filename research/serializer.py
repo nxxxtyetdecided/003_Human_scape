@@ -27,6 +27,7 @@ class ResearchSerializer(serializers.ModelSerializer):
 class ResearchQuerySerializer(serializers.Serializer):
     """ 
         류성훈
+        Swagger 파라미터검색을 위한 Serializer
     """
     task_name = serializers.CharField(help_text="과제명으로 검색", required=False)
     scope = task_name = serializers.CharField(help_text="연구범위로 검색", required=False)
