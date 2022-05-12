@@ -11,7 +11,7 @@ from research.models import (
     Research, ResearchScope, ResearchType,
     ResearchAgency, ResearchModel, ResearchDepartment
 )
-from research.serializer import ResearchSerializer
+from research.serializer import ResearchSerializer, ResearchQuerySerializer
 
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi     
@@ -153,7 +153,7 @@ class ResearchListView(generics.ListAPIView, ResearchHandler):
     """
         정미정
     """
-    @swagger_auto_schema(tags=['지정한 데이터의 상세 정보를 불러옵니다.'], request_body=ResearchSerializer)
+    
     def get_queryset(self):
         q = self.get_query_params(self.request)
         offset, limit = self.pagination(self.request)
@@ -161,13 +161,13 @@ class ResearchListView(generics.ListAPIView, ResearchHandler):
         queryset = Research.objects.filter(q)[offset:offset + limit]
         return queryset
 
+    @swagger_auto_schema(query_serializer=ResearchQuerySerializer)
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
     serializer_class = ResearchSerializer
 
 
-@swagger_auto_schema(query_serializer=ResearchSerializer)
 class ResearchDetailView(generics.RetrieveAPIView):
     """
         정미정
@@ -176,5 +176,8 @@ class ResearchDetailView(generics.RetrieveAPIView):
     queryset = Research.objects.all()
     lookup_field = 'task_id'
 
+    @swagger_auto_schema()
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
+
+

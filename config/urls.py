@@ -24,7 +24,7 @@ from drf_yasg import openapi
 router = routers.DefaultRouter()
 
 schema_url_patterns = [
-    path('api/restaurants', include('research.urls')),
+    path('api/research', include('research.urls')),
 ]
 
 # swagger
