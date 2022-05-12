@@ -7,6 +7,15 @@
 
 </div>
 
+## 목차
+- [D팀 멤버 소개](#-team-d-member)  
+- [개발 기간](#-개발기간)  
+- [프로젝트 분석](#-프로젝트-분석)
+- [ERD](#-erd)  
+- [프로젝트 후기](#-프로젝트-후기)  
+- [배포](#-배포)
+- [API 명세서](#-api-명세서)
+- [기술 스택](#-사용된-기술-스택)  
 
 <div align="center">  
 
@@ -27,3 +36,62 @@
 |공지사항, 컨벤션 공유 등<br> 우리 팀을 위한 룰 |요구사항 분석, 정보 공유 및<br> 원할한 프로젝트를 위해 사용|
 
   </div> 
+
+## ⌛ 개발기간
+  
+## 💭 프로젝트 분석
+
+## 🚥 ERD
+
+## 🎭 프로젝트 후기
+<details>
+  <summary>권상현</summary>
+<div markdown="1">
+
+- 여기에 쓰세요
+</div>
+</details>
+
+<details>
+  <summary>김석재</summary>
+<div markdown="1">
+
+- 여기에 쓰세요
+</div>
+</details>
+
+<details>
+  <summary>류성훈</summary>
+<div markdown="1">
+
+- 여기에 쓰세요
+</div>
+</details>
+
+<details>
+  <summary>정미정</summary>
+<div markdown="1">
+
+- 여기에 쓰세요
+</div>
+</details>
+
+## 🔥 배포
+프로젝트를 Docker를 이용해 컨테이너화 해 EC2에 배포했습니다  
+[API Link](http://13.125.251.226/api/research)
+
+## 🎫 API 명세서
+
+<details>
+  <summary>API 실행 가이드</summary>
+<div markdown="1">
+
+- 여기에 쓰세요
+</div>
+</details>
+ 
+
+## 🧹 사용된 기술 스택
+  
+  > - Back-End :  <img src="https://img.shields.io/badge/Python 3.10-3776AB?style=flat&logo=Python&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Django 4.0.4-092E20?style=flat&logo=Django&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/mysql 5.0-1b9e41?style=flat&logo=Mysql&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Django_rest_freamwork 3.13.1-009287?style=flat&logo=Django-rest-freamwork&logoColor=white"/>
+> - ETC　　　:  <img src="https://img.shields.io/badge/Git-F05032?style=flat-badge&logo=Git&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Github-181717?style=flat-badge&logo=Github&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Swagger-FF6C37?style=flat-badge&logo=Swagger&logoColor=white"/>
