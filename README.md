@@ -38,6 +38,4 @@
     - 최근 일주일내에 업데이트(변경사항이 있는) 된 임상정보 리스트
     - pagination 기능 (offset, limit 으로 구현)
 
-
-
-  
+## [API 배포 Link](http://13.125.251.226/api/research)

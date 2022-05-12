@@ -9,9 +9,10 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import os
 
 from pathlib import Path
-from my_settings import DATABASES, SECRET_KEY
+from .my_settings import DATABASES, SECRET_KEY, SERVICE_KEY
 
 import pymysql
 
@@ -19,6 +20,7 @@ pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+ROOT_DIR = os.path.dirname(BASE_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,11 +28,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = SECRET_KEY
+SERVICE_KEY = SERVICE_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -48,8 +51,8 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'corsheaders',
     'drf_yasg',
+    'django_crontab',
 ]
-
 
 LOCAL_APPS = [
     'core',
@@ -130,7 +133,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_DIR = os.path.join(BASE_DIR,'static')
+STATICFILES_DIRS = [
+    STATIC_DIR,
+    ]
+print(BASE_DIR,ROOT_DIR)
+STATIC_ROOT = os.path.join(ROOT_DIR,'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -169,8 +178,12 @@ CORS_ALLOW_HEADERS = (
 REST_FRAMEWORK = {    
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-       
+
     ]
 }
+
+CRONJOBS = [ 
+    ('* 0 * * *', 'research.views.batch_task_update_or_create_research', '>> '+os.path.join(BASE_DIR, 'research/batch_task.log')+' 2>&1 ')
+]
 
 # Swagger
