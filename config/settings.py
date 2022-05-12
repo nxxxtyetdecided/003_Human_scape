@@ -31,7 +31,7 @@ SECRET_KEY = SECRET_KEY
 SERVICE_KEY = SERVICE_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -183,7 +183,7 @@ REST_FRAMEWORK = {
 }
 
 CRONJOBS = [ 
-    ('* 0 * * *', 'research.views.batch_task_update_or_create_research', '>> '+os.path.join(BASE_DIR, 'research/batch_task.log')+' 2>&1 ')
+    ('* 0 * * *', 'research.views.batch_task_update_or_create_research', '>> '+os.path.join(BASE_DIR, 'batch_task.log')+' 2>&1 ')
 ]
 
 # Swagger
