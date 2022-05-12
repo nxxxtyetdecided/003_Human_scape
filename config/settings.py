@@ -9,9 +9,10 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import os
 
 from pathlib import Path
-from my_settings import DATABASES, SECRET_KEY
+from my_settings import DATABASES, SECRET_KEY, SERVICE_KEY
 
 import pymysql
 
@@ -26,11 +27,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = SECRET_KEY
+SERVICE_KEY = SERVICE_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -48,8 +50,8 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'corsheaders',
     'drf_yasg',
+    'django_crontab',
 ]
-
 
 LOCAL_APPS = [
     'core',
@@ -169,8 +171,12 @@ CORS_ALLOW_HEADERS = (
 REST_FRAMEWORK = {    
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-       
+
     ]
 }
+
+CRONJOBS = [ 
+    ('* 0 * * *', 'research.views.batch_task_update_or_create_research', '>> '+os.path.join(BASE_DIR, 'research/batch_task.log')+' 2>&1 ')
+]
 
 # Swagger
