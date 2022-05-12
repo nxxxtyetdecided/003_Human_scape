@@ -152,7 +152,6 @@ class ResearchHandler:
 class ResearchListView(generics.ListAPIView, ResearchHandler):
     """
         정미정
-        
     """
     
     def get_queryset(self):
