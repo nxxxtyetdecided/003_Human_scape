@@ -183,7 +183,7 @@ REST_FRAMEWORK = {
 }
 
 CRONJOBS = [ 
-    ('* 0 * * *', 'research.views.batch_task_update_or_create_research', '>> '+os.path.join(BASE_DIR, 'batch_task.log')+' 2>&1 ')
+    ('30 0 * * *', 'research.views.batch_task_update_or_create_research', '>> '+os.path.join(BASE_DIR, 'batch_task.log')+' 2>&1 ')
 ]
 
 # Swagger
