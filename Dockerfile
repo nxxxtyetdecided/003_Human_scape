@@ -16,6 +16,7 @@ WORKDIR /app
 #local 현재 디렉토리의 requirements를 도커의 현재 디렉토리로 카피
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
+RUN apt-get install -y cron
 
 #local => 도커 전체 옮기기
 COPY . . 

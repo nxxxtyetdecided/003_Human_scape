@@ -31,7 +31,7 @@ SECRET_KEY = SECRET_KEY
 SERVICE_KEY = SERVICE_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
