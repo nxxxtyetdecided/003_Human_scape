@@ -64,15 +64,15 @@ def batch_task_update_or_create_research():
         task_name = data['과제명']
         period = data['연구기간']
         target_number = data['전체목표연구대상자수']
-        scope, is_created = ResearchScope.objects.get_or_create(scope=data['연구범위'])
-        type, is_created = ResearchType.objects.get_or_create(type=data['연구종류'])
-        agency, is_created = ResearchAgency.objects.get_or_create(agency=data['연구책임기관'])
-        model, is_created = ResearchModel.objects.get_or_create(model=data['임상시험단계(연구모형)'])
-        department, is_created = ResearchDepartment.objects.get_or_create(department=data['진료과'])
+        scope, _ = ResearchScope.objects.get_or_create(scope = data['연구범위'])
+        type, _ = ResearchType.objects.get_or_create(type = data['연구종류'])
+        agency, _ = ResearchAgency.objects.get_or_create(agency = data['연구책임기관'])
+        model, _ = ResearchModel.objects.get_or_create(model = data['임상시험단계(연구모형)'])
+        department, _ = ResearchDepartment.objects.get_or_create(department = data['진료과'])
 
         research, is_created = Research.objects.get_or_create(
-            task_id=task_id,
-            defaults={
+            task_id = task_id,
+            defaults = {
                 'task_name': task_name,
                 'period': period,
                 'target_number': target_number,
