@@ -1,10 +1,9 @@
-from datetime import date, timedelta
 import requests
 
+from datetime         import date, timedelta
 from django.db.models import Q
-from django.http import JsonResponse
-
-from rest_framework import generics
+from django.http      import JsonResponse
+from rest_framework   import generics
 
 from config.settings import SERVICE_KEY
 from research.models import (
@@ -54,12 +53,13 @@ class ResearchDataAPIController():
 
         return response.json()['data']
 
-
 def batch_task_update_or_create_research():
     """
         권상현
     """
     research_data = ResearchDataAPIController().call()
+    create_obj_cnt = 0
+    update_obj_cnt = 0
 
     for data in research_data:
         task_id = data['과제번호']
@@ -86,7 +86,10 @@ def batch_task_update_or_create_research():
             }
         )
 
-        if not is_created:
+        if is_created :
+            create_obj_cnt += 1
+
+        else:
             update_flag = False
 
             if research.target_number != target_number:
@@ -103,6 +106,17 @@ def batch_task_update_or_create_research():
 
             if update_flag:
                 research.save()
+                update_obj_cnt += 1
+    
+    """
+        12일 00시에 open api에서 받아온 데이터를 통해 1개의 신규 리서치가 등록되고 2개의 리서치 정보가 바뀌었을 경우
+        프로젝트 최상위 디렉토리에 위치한 batch_task란 이름의 로그 파일에 다음과 같이 기록 됨
+
+        '2022-05-12 log : "1" object(s) created, "2" object(s) updated.'
+    """
+    response = f'{str(date.today())} log : "{create_obj_cnt}" object(s) created, "{update_obj_cnt}" object(s) updated.'
+ 
+    return print(response)
 
 
 class ResearchHandler:
