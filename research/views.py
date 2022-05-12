@@ -158,6 +158,9 @@ class ResearchListView(generics.ListAPIView, ResearchHandler):
         queryset = Research.objects.filter(q)[offset:offset + limit]
         return queryset
 
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
     serializer_class = ResearchSerializer
 
 
@@ -168,3 +171,6 @@ class ResearchDetailView(generics.RetrieveAPIView):
     queryset = Research.objects.all()
     serializer_class = ResearchSerializer
     lookup_field = 'task_id'
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
