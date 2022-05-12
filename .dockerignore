@@ -1,3 +1,6 @@
+.venv
+.gitignore
+README.md
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,pycharm,visualstudiocode,macos,windows,linux,vim,zsh
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,pycharm,visualstudiocode,macos,windows,linux,vim,zsh
@@ -428,3 +431,4 @@ my_settings.py
 env
 *.csv
 *.pdf
+
