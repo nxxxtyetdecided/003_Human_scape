@@ -1,17 +1,16 @@
-from datetime import date, timedelta
 import requests
 
+from datetime         import date, timedelta
 from django.db.models import Q
-from django.http import JsonResponse
-
-from rest_framework import generics
+from django.http      import JsonResponse
+from rest_framework   import generics
 
 from config.settings import SERVICE_KEY
 from research.models import (
     Research, ResearchScope, ResearchType,
     ResearchAgency, ResearchModel, ResearchDepartment
 )
-from research.serializer import ResearchSerializer
+from research.serializer import ResearchSerializer, ResearchQuerySerializer
 
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi     
@@ -54,12 +53,13 @@ class ResearchDataAPIController():
 
         return response.json()['data']
 
-
 def batch_task_update_or_create_research():
     """
         권상현
     """
     research_data = ResearchDataAPIController().call()
+    create_obj_cnt = 0
+    update_obj_cnt = 0
 
     for data in research_data:
         task_id = data['과제번호']
@@ -86,7 +86,10 @@ def batch_task_update_or_create_research():
             }
         )
 
-        if not is_created:
+        if is_created :
+            create_obj_cnt += 1
+
+        else:
             update_flag = False
 
             if research.target_number != target_number:
@@ -103,6 +106,17 @@ def batch_task_update_or_create_research():
 
             if update_flag:
                 research.save()
+                update_obj_cnt += 1
+    
+    """
+        12일 00시에 open api에서 받아온 데이터를 통해 1개의 신규 리서치가 등록되고 2개의 리서치 정보가 바뀌었을 경우
+        프로젝트 최상위 디렉토리에 위치한 batch_task란 이름의 로그 파일에 다음과 같이 기록 됨
+
+        '2022-05-12 log : "1" object(s) created, "2" object(s) updated.'
+    """
+    response = f'{str(date.today())} log : "{create_obj_cnt}" object(s) created, "{update_obj_cnt}" object(s) updated.'
+ 
+    return print(response)
 
 
 class ResearchHandler:
@@ -153,7 +167,7 @@ class ResearchListView(generics.ListAPIView, ResearchHandler):
     """
         정미정
     """
-    @swagger_auto_schema(tags=['지정한 데이터의 상세 정보를 불러옵니다.'], request_body=ResearchSerializer)
+    
     def get_queryset(self):
         q = self.get_query_params(self.request)
         offset, limit = self.pagination(self.request)
@@ -161,10 +175,13 @@ class ResearchListView(generics.ListAPIView, ResearchHandler):
         queryset = Research.objects.filter(q)[offset:offset + limit]
         return queryset
 
+    @swagger_auto_schema(tags=['데이터 리스트를 불러옵니다. 파라미터를 이용하여 원하는 조건으로 검색도 가능합니다.'], query_serializer=ResearchQuerySerializer)
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
     serializer_class = ResearchSerializer
 
 
-@swagger_auto_schema(query_serializer=ResearchSerializer)
 class ResearchDetailView(generics.RetrieveAPIView):
     """
         정미정
@@ -172,3 +189,9 @@ class ResearchDetailView(generics.RetrieveAPIView):
     serializer_class = ResearchSerializer
     queryset = Research.objects.all()
     lookup_field = 'task_id'
+
+    @swagger_auto_schema(tags=['데이터의 상세 정보를 불러옵니다.'])
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+
