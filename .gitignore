@@ -429,3 +429,4 @@ my_settings.py
 env
 *.csv
 *.pdf
+static
