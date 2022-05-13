@@ -178,7 +178,24 @@
 
 <summary>API 실행 가이드</summary>
 
+- Read
+	```
+	curl http://52.78.198.214/api/research/C130012
+	```
+
+- List
+	```
+	curl http://52.78.198.214/api/research
+	```
+	
+- Search
+		```
+		curl http://52.78.198.214/api/research?agency=%EA%B3%A0%EB%A0%A4%EB%8C%80
+		```	
+
 <div  markdown="1">
+
+<b>상세 설명</b>
 
 -  [GET] <b>/research</b>
   임상정보 데이터 리스트 <b>조회,검색</b> 기능
@@ -188,7 +205,7 @@
 	  - 특정 정보로 검색 : [Try it out]클릭 후 원하는 정보를 입력 후 [Exectute]
 		  - ex) agency = 고려대
 			<img width="200"  src="https://user-images.githubusercontent.com/72593394/168236832-99955257-79ab-4ec9-a1c2-ddf54848b65f.png">
-			[execute] !
+			[execute]
 			
 			<img width="200"  src="https://user-images.githubusercontent.com/72593394/168237177-1d14fb9f-a4d7-409f-90ca-f0123817ae3d.png">
 			
