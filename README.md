@@ -189,9 +189,9 @@
 	```
 	
 - Search
-		```
-		curl http://52.78.198.214/api/research?agency=%EA%B3%A0%EB%A0%A4%EB%8C%80
-		```	
+	```
+	curl http://52.78.198.214/api/research?agency=%EA%B3%A0%EB%A0%A4%EB%8C%80
+	```	
 
 <div  markdown="1">
 
@@ -218,12 +218,12 @@
 			
 
 
- -  [GET] <b>/research/{task_id}</b>
+-  [GET] <b>/research/{task_id}</b>
 	임상정보 상세데이터 가져오기(detail)
-	- 원하는 과제번호(task_id)를 파라미터로 넣어 [Execute]합니다.
-		- ex) task_id = C130012
+	  - 원하는 과제번호(task_id)를 파라미터로 넣어 [Execute]합니다.
+	  - ex) task_id = C130012
 			<img width="200"  src="https://user-images.githubusercontent.com/72593394/168239792-ccd5f7d5-257e-43e1-afc6-c8b31f4350a6.png">
-				과제번호 C130012의 상세정보 데이터
+			과제번호 C130012의 상세정보 데이터
 
 </div>
 
@@ -233,9 +233,6 @@
 
 ## 🧹 사용된 기술 스택
 
->  - Back-End : <img  src="https://img.shields.io/badge/Python 3.10-3776AB?style=flat&logo=Python&logoColor=white"/>&nbsp;<img  src="https://img.shields.io/badge/Django 4.0.4-092E20?style=flat&logo=Django&logoColor=white"/>&nbsp;<img  src="https://img.shields.io/badge/mysql 5.0-1b9e41?style=flat&logo=Mysql&logoColor=white"/>&nbsp;<img  src="https://img.shields.io/badge/Django_rest_freamwork 3.13.1-009287?style=flat&logo=Django-rest-freamwork&logoColor=white"/>
->  - ETC　　　: <img  src="https://img.shields.io/badge/Git-F05032?style=flat-badge&logo=Git&logoColor=white"/>&nbsp;<img  src="https://img.shields.io/badge/Github-181717?style=flat-badge&logo=Github&logoColor=white"/>&nbsp;<img  src="https://img.shields.io/badge/Swagger-FF6C37?style=flat-badge&logo=Swagger&logoColor=white"/>
-
-  > - Back-End :  <img src="https://img.shields.io/badge/Python 3.10-3776AB?style=flat&logo=Python&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Django 4.0.4-092E20?style=flat&logo=Django&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/mysql 5.0-1b9e41?style=flat&logo=Mysql&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Django_rest_freamwork 3.13.1-009287?style=flat&logo=Django-rest-freamwork&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Docker 20.10.14-2496ED?style=flat&logo=docker&logoColor=white"/>
-
+> - Back-End :  <img src="https://img.shields.io/badge/Python 3.10-3776AB?style=flat&logo=Python&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Django 4.0.4-092E20?style=flat&logo=Django&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Django-DRF 3.13.1-009287?style=flat&logo=Django&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Django-crontab 0.7.1-FF7300?style=flat&logo=Django&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Mysql 8.0.28 -1b9e41?style=flat&logo=Mysql&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Docker 20.10.14-2496ED?style=flat&logo=docker&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Gunicorn 20.1.0-499848?style=flat&logo=gunicorn&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/NGINX 1.21.6-0ECAD4?style=flat&logo=NGINX&logoColor=white"/>
+> 
 > - ETC　　　:  <img src="https://img.shields.io/badge/Git-F05032?style=flat-badge&logo=Git&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Github-181717?style=flat-badge&logo=Github&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Swagger-FF6C37?style=flat-badge&logo=Swagger&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/AWS EC2-FF9900?style=flat-badge&logo=Amazon AWS&logoColor=white"/>
