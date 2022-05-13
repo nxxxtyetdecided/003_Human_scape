@@ -31,7 +31,7 @@ SECRET_KEY = SECRET_KEY
 SERVICE_KEY = SERVICE_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -70,6 +70,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -183,7 +184,7 @@ REST_FRAMEWORK = {
 }
 
 CRONJOBS = [ 
-    ('30 0 * * *', 'research.views.batch_task_update_or_create_research', '>> '+os.path.join(BASE_DIR, 'batch_task.log')+' 2>&1 ')
+    ('* 0 * * *', 'research.views.batch_task_update_or_create_research', '>> '+os.path.join(BASE_DIR, 'research/batch_task.log')+' 2>&1 ')
 ]
 
 # Swagger
