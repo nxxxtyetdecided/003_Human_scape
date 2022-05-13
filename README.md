@@ -202,7 +202,7 @@
 
 
  -  [GET] <b>/research/{task_id}</b>
-	임상정보 상세데이터 가져오기(detail)
+	임상정보 상세데이터 가져오기(detail)
 	- 원하는 과제번호(task_id)를 파라미터로 넣어 [Execute]합니다.
 		- ex) task_id = C130012
 			<img width="200"  src="https://user-images.githubusercontent.com/72593394/168239792-ccd5f7d5-257e-43e1-afc6-c8b31f4350a6.png">
