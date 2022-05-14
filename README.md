@@ -376,7 +376,10 @@
 
       ---
 
-      추가 - sql파일을 이용해 db를 직접 넣을 경우 migrate가 필요 하지않다 migrate를 빼주면 project app이 종료되지않는다
+      추가 - sql파일을 이용해 db를 직접 넣을 경우 migrate가 필요 하지않다 migrate를 빼주면 project app이 종료되지않는다o
+      </div>
+
+      </details>
 
       <details>
 
@@ -384,6 +387,7 @@
 
       <div  markdown="1">
         
+    
 
       나는 db 데이터의 유무를 **`제작한 api를 통해`** 체크했는데 **`원인 -1`**을 해결했을때는 `**project app의 도커가 종료**`되면 api를 통해 체크를 할 수 없었다.
 
@@ -406,10 +410,6 @@
       </div>
 
       </details>
-
-    </div>
-
-    </details>
 
   </div>  
 
@@ -467,6 +467,10 @@
 
     </details>
 
+    <div>
+
+    <details>
+
     <details>
 
     <summary>원인 분석 및 해결</summary>
@@ -520,6 +524,10 @@
     </div>
 
     </details>
+
+  <div>
+
+  <details>
     
   <details>
 
