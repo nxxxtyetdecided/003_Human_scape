@@ -253,7 +253,7 @@
 
   <summary>문제 -1</summary>
   
-  <div  markdown="1">
+  <div markdown="1">
 
     <details>
 
@@ -294,7 +294,6 @@
     </div>
         
     </details>
-
 
     <details>
 
@@ -342,7 +341,7 @@
 
       <div  markdown="1">
 
-      -  `web_1 exited with code 1` 와 함께 project app 도커 실행이 중단된다
+      - `web_1 exited with code 1` 와 함께 project app 도커 실행이 중단된다
 
       - mysql github issue에 같은 문제를 가진 사람이있었는데 초기화될때 뜨는 문구일 뿐이라고 한다
 
@@ -364,6 +363,10 @@
 
       </details>
 
+      </div>
+
+      </details>
+      
       <details>
 
       <summary>해결</summary>
