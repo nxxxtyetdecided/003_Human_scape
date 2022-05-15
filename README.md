@@ -93,7 +93,6 @@
 
   <summary>초기 계획</summary>
 
-  <div markdown="1">
 
   1. 초기 DB 설계 시 오픈 API에서 받아 온 임상시험 정보(이하 정보)를 토대로 생성한 각각의 레코드(로우, 행)에 생성 시각을 나타내는 `created_at`, 최신화 시각을 나타내는 `updated_at`을 추가하고 이를 통해 이력관리를 계획함.
 
@@ -110,8 +109,6 @@
     c. 이 과정은 `Django`에서 제공하는 `update_or_create` 메소드를 사용
 
   3. 정보를 불러와 조회할 때 `created_at`, `updated_at` 항목을 바탕으로 최신화 시점을 분류하고 최근 일주일 내 변경사항이 있는 정보를 조회하는 API를 구현
-
-  </div>
 
   </details>
 
