@@ -377,8 +377,6 @@
 
       2. project app 에 `restart: always` 추가 , `migrate` 실행 삭제
 
-      ---
-
       추가 - sql파일을 이용해 db를 직접 넣을 경우 migrate가 필요 하지않다 migrate를 빼주면 project app이 종료되지않는다o
       </div>
 
@@ -474,8 +472,6 @@
 
     <details>
 
-    <details>
-
     <summary>원인 분석 및 해결</summary>
 
     <div  markdown="1">
@@ -528,10 +524,6 @@
 
     </details>
 
-  <div>
-
-  <details>
-    
   <details>
 
   <summary>무엇이 이 문제를 어렵게 만들었는가?</summary>
@@ -556,7 +548,9 @@
 
 </details>
 
-  
+</div>
+
+</details>
 
 <details>
 
