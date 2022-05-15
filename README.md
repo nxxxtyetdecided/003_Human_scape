@@ -181,7 +181,7 @@
 
   2-1. `update_or_create`의 소스코드를 확인해 본 결과 `create` 가 아닌 경우에는 `update` 메소드의 로직을 그대로 따른 후 마지막에 `save()`를 실행함을 확인
 
-  <img  src="https://user-images.githubusercontent.com/72593394/168459528-92270c38-1d55-4826-82d2-be36a1a17a4e.png"  width="200"/>
+  <img  src="https://user-images.githubusercontent.com/72593394/168459528-92270c38-1d55-4826-82d2-be36a1a17a4e.png"  width="500"/>
 
   2-2. 이럴 경우 값의 변화 유무에 상관 없이 일단 값 변경에 대한 쿼리를 날리므로 `updated_at` 이 최신화 될 수 밖에 없음
 
@@ -385,7 +385,7 @@
 
         - mysql github issue에 같은 문제를 가진 사람이있었는데 초기화될때 뜨는 문구일 뿐이라고 한다
 
-        ![ 신경안써도 된다고 하신다 ㅠㅠ](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%205.png)
+        <img  src="https://user-images.githubusercontent.com/72593394/168459694-5dac6201-eeeb-43cb-987f-2928c937b8e0.png"  width="500"/>
 
         신경안써도 된다고 하신다 ㅠㅠ
 
@@ -478,7 +478,7 @@
 
       - docker-compose log 화면에 crontab log가 없었다
 
-      ![Untitled](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%206.png)
+      <img  src="https://user-images.githubusercontent.com/72593394/168459697-f4b1b6f9-1e52-449b-b70e-e79f68d88d8c.png"  width="500"/>
 
       - crontab log 파일이 생성되어야 하는 위치에 아무것도 없다
 
@@ -532,7 +532,7 @@
 
       - 해결 ⇒ `service cron start` cron 서비스를 켜준다
 
-        ![Batch_task.log2 가 생성됨](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%207.png)
+        <img  src="https://user-images.githubusercontent.com/72593394/168459708-b341a6f7-c2be-43a2-a9ed-43eaa4a8391c.png"  width="500"/>
 
         Batch_task.log2 가 생성됨
 
@@ -548,11 +548,11 @@
 
       - 해결 ⇒ `hello를 출력하는 테스트용 py 파일`을 만들어 테스트, log가 제대로 찍혀 문제를 찾았고 `원래 코드에서 출력을 추가`했다
 
-        ![Untitled](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%208.png)
+        <img  src="https://user-images.githubusercontent.com/72593394/168459706-169bb103-dfa5-4f96-ab1b-ca99346d24de.png"  width="500"/>
 
       - 테스트
 
-        ![Untitled](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%209.png)
+        <img  src="https://user-images.githubusercontent.com/72593394/168459705-59ebad7f-7126-492b-8490-310e6a139f00.png"  width="500"/>
 
       - 정상 출력을확인
 
@@ -674,11 +674,11 @@
 
           이전
         
-          ![Untitled](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%2010.png)
+          <img  src="https://user-images.githubusercontent.com/72593394/168459704-f9bc3774-49e9-4683-b8e2-5b404f3a813d.png"  width="500"/>
 
           이후
 
-         ![Untitled](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%2011.png)
+         <img  src="https://user-images.githubusercontent.com/72593394/168459703-beec41d7-3748-4762-9f35-8b1fef101ce6.png"  width="500"/>
 
       2. 특정 임상정보 API
 
@@ -692,7 +692,7 @@
 
     ❗ 로컬에서 swagger 주소에 들어가 실행했을 때 잘 작동했으나 배포 후 실행해보니 `failed fetch` 가 출력됐습니다.
 
-    ![Untitled](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%2012.png)
+    <img  src="https://user-images.githubusercontent.com/72593394/168459702-52838a89-e843-4805-82ec-8d430b368bb7.png"  width="500"/>
 
     `ec2주소/api/research`로 요청이 가야하는 데 nginx.conf에서 설정해준 proxy_path인 `web/api/research`로 연결이 되어 오류가 났습니다.
 
@@ -728,7 +728,7 @@
 
     이 세가지를 추가 후 다시 배포한 결과
 
-    ![Untitled](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%2013.png)
+    <img  src="https://user-images.githubusercontent.com/72593394/168459701-b6e5f8db-d5fb-4272-b776-e6ad28745545.png"  width="500"/>
 
     정상적인 값이 반환되는 것을 확인할 수 있었습니다.
       
