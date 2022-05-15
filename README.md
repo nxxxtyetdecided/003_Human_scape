@@ -622,69 +622,69 @@
 
 <div markdown="1">
 
-  구현한 기능
+구현한 기능
 
-  1. DB 모델링
-    
-    - 모델을 여러 개로 나눈 이유는 추후 데이터 확장성 고려 또한 공통적으로 중복된 값을 가지는 필드이였기 때문에 데이터베이스 정규화 규칙을 따라 구현했습니다.
+1. DB 모델링
+  
+  - 모델을 여러 개로 나눈 이유는 추후 데이터 확장성 고려 또한 공통적으로 중복된 값을 가지는 필드이였기 때문에 데이터베이스 정규화 규칙을 따라 구현했습니다.
 
-    - 과제 번호는 고유한 값이기 때문에 `pk`로 설정했습니다.
+  - 과제 번호는 고유한 값이기 때문에 `pk`로 설정했습니다.
 
-  2. OPEN API 통신
+2. OPEN API 통신
 
-    - 데이터의 개수가 145개로 적어 한 페이지에 모든 데이터를 담아 호출했습니다..
+  - 데이터의 개수가 145개로 적어 한 페이지에 모든 데이터를 담아 호출했습니다..
 
-      -  `page=1 perpage=145`
+    -  `page=1 perpage=145`
 
-  3. 임상 정보 APIs
+3. 임상 정보 APIs
 
-    - 정보의 수정이나 삭제는 OPEN API에서 이루어지는 것이고
+  - 정보의 수정이나 삭제는 OPEN API에서 이루어지는 것이고
 
-      지금 작성한 API는 정보를 보여주는 기능만 하는 게 맞다고 판단해서
+    지금 작성한 API는 정보를 보여주는 기능만 하는 게 맞다고 판단해서
 
-      읽는 기능만 구현했습니다.. (`ListAPIView` , `RetriveAPIView`)
+    읽는 기능만 구현했습니다.. (`ListAPIView` , `RetriveAPIView`)
 
-    - generics.view를 이해하고자 사용해봤습니다.
+  - generics.view를 이해하고자 사용해봤습니다.
 
-      1. 임상정보 리스트 API
+    1. 임상정보 리스트 API
 
-        - 최근 일주일내에 변경사항이 있는 임상정보 리스트
+      - 최근 일주일내에 변경사항이 있는 임상정보 리스트
 
-          -  `updated_at__gte` 에 일주일 전 날짜를 적용했습니다.
+        -  `updated_at__gte` 에 일주일 전 날짜를 적용했습니다.
 
-        - pagination을 위한 offset, limit
+      - pagination을 위한 offset, limit
 
-        - 쿼리 파라미터로 받아 적용했습니다.
+      - 쿼리 파라미터로 받아 적용했습니다.
 
-        - 검색 기능 제공
+      - 검색 기능 제공
 
-          - 검색에 특정 필드를 검색하라는 조건이 없어 사용자가 주로 검색을 할 것 같은 필드를 임의로 선정했습니다..(과제명, 연구범위, 연구종류, 연구책임기관, 임상시험단계, 진료과)
+        - 검색에 특정 필드를 검색하라는 조건이 없어 사용자가 주로 검색을 할 것 같은 필드를 임의로 선정했습니다..(과제명, 연구범위, 연구종류, 연구책임기관, 임상시험단계, 진료과)
 
-          - 여러 개의 조건을 사용하기 위해 **Q**를 사용했습니다.
+        - 여러 개의 조건을 사용하기 위해 **Q**를 사용했습니다.
 
-        **어려웠던 점**
+      **어려웠던 점**
 
-          - gernics.view를 처음 사용해보는데 제공해주는 기능이 많지만 원하는 추가적인 기능이 있을 때 메소드 오버라이딩의 필요성을 느꼈습니다..
+        - gernics.view를 처음 사용해보는데 제공해주는 기능이 많지만 원하는 추가적인 기능이 있을 때 메소드 오버라이딩의 필요성을 느꼈습니다..
 
-          - 쿼리 파라미터가 많아 `ListAPIView` → `GenericAPIView -> get_queryset`를 커스텀했습니다.
+        - 쿼리 파라미터가 많아 `ListAPIView` → `GenericAPIView -> get_queryset`를 커스텀했습니다.
 
-          - foreignkey로 연결한 값들을 `select_related`로 불러왔으나 쿼리문을 확인해보니 foreignkey로 연결한 테이블의 다른 값을 더 가져오지 않아 `select_related`가 필요없다는 것을 알게 되어 `select_related`의 개념을 이해하게 됐습니다.
+        - foreignkey로 연결한 값들을 `select_related`로 불러왔으나 쿼리문을 확인해보니 foreignkey로 연결한 테이블의 다른 값을 더 가져오지 않아 `select_related`가 필요없다는 것을 알게 되어 `select_related`의 개념을 이해하게 됐습니다.
 
-          - serializer에 foreignkey로 연결한 테이블들은 id로 나와서 값으로 보이도록 수정해야했다. `serializer.Charfield`로 값을 보여줌으로 해결했습니다.
+        - serializer에 foreignkey로 연결한 테이블들은 id로 나와서 값으로 보이도록 수정해야했다. `serializer.Charfield`로 값을 보여줌으로 해결했습니다.
 
-          이전
+        이전
         
-      <img  src="https://user-images.githubusercontent.com/72593394/168459704-f9bc3774-49e9-4683-b8e2-5b404f3a813d.png"  width="500"/>
+    <img  src="https://user-images.githubusercontent.com/72593394/168459704-f9bc3774-49e9-4683-b8e2-5b404f3a813d.png"  width="500"/>
 
-          이후
+        이후
 
-      <img  src="https://user-images.githubusercontent.com/72593394/168459703-beec41d7-3748-4762-9f35-8b1fef101ce6.png"  width="500"/>
+    <img  src="https://user-images.githubusercontent.com/72593394/168459703-beec41d7-3748-4762-9f35-8b1fef101ce6.png"  width="500"/>
 
-      2. 특정 임상정보 API
+    2. 특정 임상정보 API
 
-        - 특정 임상정보 읽기
+      - 특정 임상정보 읽기
 
-          - task_id가 pk 이므로 `lookup_field=task_id`로 설정하는 것이 직관적이라고 생각했습니다.
+        - task_id가 pk 이므로 `lookup_field=task_id`로 설정하는 것이 직관적이라고 생각했습니다.
 
   4. 배포 후 swagger ui 의 request url관련
     
@@ -698,35 +698,35 @@
 
     proxy_path는 docker-compose에서 작성된 컨테이너명으로 변경하면 아예 연결이 되지 않아 변경할 수 있는 부분이 아니였습니다.
 
-    ```yaml
+  ```yaml
 
-    location / {
+  location / {
 
-    proxy_pass http://web/;
+  proxy_pass http://web/;
 
-    proxy_set_header Host $host;
+  proxy_set_header Host $host;
 
-    proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Real-IP $remote_addr;
 
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
-    }
+  }
 
-    ```
+  ```
 
-    찾아본 결과 proxy_set header로 변수를 설정해야한다는 것을 알게되어
+  찾아본 결과 proxy_set header로 변수를 설정해야한다는 것을 알게되어
 
-      - Host : 요청이 들어왔을 때 host 명
+    - Host : 요청이 들어왔을 때 host 명
 
-      - X-Real-IP: 요청한 클라이언트의 실제 IP
+    - X-Real-IP: 요청한 클라이언트의 실제 IP
 
-        -  `$remote_addr`: 요청한 클라이언트 주소
+      -  `$remote_addr`: 요청한 클라이언트 주소
 
-      - X-Forwarded-For: 클라이언트의 IP 주소, 이전에 프록시 서버가 또 있었다면 그 IP 를 의미
+    - X-Forwarded-For: 클라이언트의 IP 주소, 이전에 프록시 서버가 또 있었다면 그 IP 를 의미
 
-        -  **$proxy_add_x_forwarded_for**: 요청 헤더와 그 뒤에 따라오는 클라이언트의 원격 주소를 포함
+      -  **$proxy_add_x_forwarded_for**: 요청 헤더와 그 뒤에 따라오는 클라이언트의 원격 주소를 포함
 
-    이 세가지를 추가 후 다시 배포한 결과
+  이 세가지를 추가 후 다시 배포한 결과
 
   <img  src="https://user-images.githubusercontent.com/72593394/168459701-b6e5f8db-d5fb-4272-b776-e6ad28745545.png"  width="500"/>
 
