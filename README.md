@@ -181,7 +181,7 @@
 
     1. `update_or_create`의 소스코드를 확인해 본 결과 `create` 가 아닌 경우에는 `update` 메소드의 로직을 그대로 따른 후 마지막에 `save()`를 실행함을 확인
 
-    ![Untitled](https://user-images.githubusercontent.com/72593394/168459528-92270c38-1d55-4826-82d2-be36a1a17a4e.png)
+    <img  src="https://user-images.githubusercontent.com/72593394/168459528-92270c38-1d55-4826-82d2-be36a1a17a4e.png"  width="200"/>
 
     2. 이럴 경우 값의 변화 유무에 상관 없이 일단 값 변경에 대한 쿼리를 날리므로 `updated_at` 이 최신화 될 수 밖에 없음
 
