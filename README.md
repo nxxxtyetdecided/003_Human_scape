@@ -255,41 +255,41 @@
   
   <div markdown="1">
 
-  <details>
-
-  <summary>문제</summary>
-
-  <div  markdown="1">
-
-  docker-compose시 api를 통해 `데이터 리스트를 조회하면 아무것도 나오지 않는(비어있는 db)` 문제가 생겼다
-
     <details>
 
-    <summary>문제상황</summary>
+    <summary>문제</summary>
 
     <div  markdown="1">
 
-    - DB의 데이터가 비어있다
+    docker-compose시 api를 통해 `데이터 리스트를 조회하면 아무것도 나오지 않는(비어있는 db)` 문제가 생겼다
 
-    - docker-compose는 실행이된다
+      <details>
 
-    - api는 정상적으로 동작한다
+      <summary>문제상황</summary>
 
-    </div>
+      <div  markdown="1">
 
-    </details>
-    
-    <details>
+      - DB의 데이터가 비어있다
 
-    <summary>추측</summary>
+      - docker-compose는 실행이된다
 
-    <div  markdown="1">
+      - api는 정상적으로 동작한다
 
-    - docker-compose 시 db가 제대로 입력되지 않는 것 같다
+      </div>
 
-    </div>
+      </details>
+      
+      <details>
 
-    </details>
+      <summary>추측</summary>
+
+      <div  markdown="1">
+
+      - docker-compose 시 db가 제대로 입력되지 않는 것 같다
+
+      </div>
+
+      </details>
 
     </div>
         
