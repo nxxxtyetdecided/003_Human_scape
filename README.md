@@ -417,7 +417,7 @@
 
       2. project app 에 `restart: always` 추가 , `migrate` 실행 삭제
 
-      추가 - sql파일을 이용해 db를 직접 넣을 경우 migrate가 필요 하지않다 migrate를 빼주면 project app이 종료되지않는다o
+      추가 - sql파일을 이용해 db를 직접 넣을 경우 migrate가 필요 하지않다 migrate를 빼주면 project app이 종료되지않는다
       </div>
 
       </details>
@@ -428,17 +428,17 @@
 
       <div markdown="1">
         
-      나는 db 데이터의 유무를 **`제작한 api를 통해`** 체크했는데 **`원인 -1`**을 해결했을때는 `**project app의 도커가 종료**`되면 api를 통해 체크를 할 수 없었다.
+      나는 db 데이터의 유무를 `제작한 api를 통해` 체크했는데 `원인 -1`을 해결했을때는 `**project app의 도커가 종료**`되면 api를 통해 체크를 할 수 없었다.
 
       사실 도커가 종료되었다는 것도 모르고 `**db의 문제로 api가 동작하지 않는다고 생각했다**`
 
-      팀원들과 상의해 `**각 도커 내부를 확인**` 하기로 하고 도커에 접속해 체크 하던 중 `**원인-1**`을 해결할 때 `**project app의 도커가 오류로 종료**`된다는 것을 알았다.
+      팀원들과 상의해 `각 도커 내부를 확인` 하기로 하고 도커에 접속해 체크 하던 중 `원인-1`을 해결할 때 `project app의 도커가 오류로 종료`된다는 것을 알았다.
 
-      그리고 그때 `**db 도커는 작동 중**`이며 `**db의 데이터가 채워져**`있는 것을 확인 할 수 있었다.
+      그리고 그때 `db 도커는 작동 중`이며 `db의 데이터가 채워져`있는 것을 확인 할 수 있었다.
 
-      `원인-1`을 해결하고 `**project app의 도커를 다시 키는 것**` 만으로 해결되는 간단한 문제였다.
+      `원인-1`을 해결하고 `project app의 도커를 다시 키는 것` 만으로 해결되는 간단한 문제였다.
 
-      - 결론적으로 docker에서 리눅스 cli를 처음 접해 사용이 익숙치 않다는 이유로 `**보기 편한** **api로만 체크**`를 했다는 점과 `**추측으로 문제는 여기서 나는거다 라고 확신**`해버린 점이 간단한 문제를 어렵게 만들었다.
+      - 결론적으로 docker에서 리눅스 cli를 처음 접해 사용이 익숙치 않다는 이유로 `보기 편한 api로만 체크`를 했다는 점과 `추측으로 문제는 여기서 나는거다 라고 확신`해버린 점이 간단한 문제를 어렵게 만들었다.
 
       내 이런 문제점을 알고 있었다 프로젝트에서 배포를 맡은 것 도 배포를 해본적이없어 도전해 보고싶기 때문이었다. 새로운 것에 도전해 익숙하지 않음에 대한 두려움을 이겨낼것이다
 
@@ -674,11 +674,11 @@
 
           이전
         
-          <img  src="https://user-images.githubusercontent.com/72593394/168459704-f9bc3774-49e9-4683-b8e2-5b404f3a813d.png"  width="500"/>
+      <img  src="https://user-images.githubusercontent.com/72593394/168459704-f9bc3774-49e9-4683-b8e2-5b404f3a813d.png"  width="500"/>
 
           이후
 
-         <img  src="https://user-images.githubusercontent.com/72593394/168459703-beec41d7-3748-4762-9f35-8b1fef101ce6.png"  width="500"/>
+      <img  src="https://user-images.githubusercontent.com/72593394/168459703-beec41d7-3748-4762-9f35-8b1fef101ce6.png"  width="500"/>
 
       2. 특정 임상정보 API
 
@@ -692,7 +692,7 @@
 
     ❗ 로컬에서 swagger 주소에 들어가 실행했을 때 잘 작동했으나 배포 후 실행해보니 `failed fetch` 가 출력됐습니다.
 
-    <img  src="https://user-images.githubusercontent.com/72593394/168459702-52838a89-e843-4805-82ec-8d430b368bb7.png"  width="500"/>
+  <img  src="https://user-images.githubusercontent.com/72593394/168459702-52838a89-e843-4805-82ec-8d430b368bb7.png"  width="500"/>
 
     `ec2주소/api/research`로 요청이 가야하는 데 nginx.conf에서 설정해준 proxy_path인 `web/api/research`로 연결이 되어 오류가 났습니다.
 
@@ -728,7 +728,7 @@
 
     이 세가지를 추가 후 다시 배포한 결과
 
-    <img  src="https://user-images.githubusercontent.com/72593394/168459701-b6e5f8db-d5fb-4272-b776-e6ad28745545.png"  width="500"/>
+  <img  src="https://user-images.githubusercontent.com/72593394/168459701-b6e5f8db-d5fb-4272-b776-e6ad28745545.png"  width="500"/>
 
     정상적인 값이 반환되는 것을 확인할 수 있었습니다.
       
