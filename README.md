@@ -445,10 +445,6 @@
 
       </details>
 
-    </div>
-
-    </details>
-
 <details>
 
 <summary>문제 -2</summary>
