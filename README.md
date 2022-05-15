@@ -93,7 +93,7 @@
 
   <summary>초기 계획</summary>
 
-  <div  markdown="1">
+  <div markdown="1">
 
   1. 초기 DB 설계 시 오픈 API에서 받아 온 임상시험 정보(이하 정보)를 토대로 생성한 각각의 레코드(로우, 행)에 생성 시각을 나타내는 `created_at`, 최신화 시각을 나타내는 `updated_at`을 추가하고 이를 통해 이력관리를 계획함.
 
@@ -203,7 +203,7 @@
 
 <summary>김석재</summary>
 
-<div  markdown="1">
+<div markdown="1">
 
   <details>
 
@@ -245,45 +245,45 @@
 
   <div markdown="1">
 
-    docker-compose시 api를 통해 `데이터 리스트를 조회하면 아무것도 나오지 않는(비어있는 db)` 문제가 생겼다
+  docker-compose시 api를 통해 `데이터 리스트를 조회하면 아무것도 나오지 않는(비어있는 db)` 문제가 생겼다
 
-    <details>
+  <details>
 
-    <summary>문제상황</summary>
+  <summary>문제상황</summary>
 
-    <div  markdown="1">
+  <div markdown="1">
 
-    - DB의 데이터가 비어있다
+  - DB의 데이터가 비어있다
 
-    - docker-compose는 실행이된다
+  - docker-compose는 실행이된다
 
-    - api는 정상적으로 동작한다
+  - api는 정상적으로 동작한다
 
-    </div>
+  </div>
 
-    </details>
+  </details>
       
-    <details>
+  <details>
 
-    <summary>추측</summary>
+  <summary>추측</summary>
 
-    <div  markdown="1">
+  <div markdown="1">
 
-    - docker-compose 시 db가 제대로 입력되지 않는 것 같다
+  - docker-compose 시 db가 제대로 입력되지 않는 것 같다
 
-    </div>
+  </div>
 
-    </details>
+  </details>
 
-    </div>
-        
-    </details>
+  </div>
+      
+  </details>
 
     <details>
 
     <summary>원인 분석</summary>
 
-    <div  markdown="1">
+    <div markdown="1">
 
     - docker-compose시 나오는 로그를 전부 읽어보았다
 
@@ -293,7 +293,7 @@
 
       <summary>원인 -1</summary>
 
-      <div  markdown="1">
+      <div markdown="1">
 
         ```python
 
@@ -323,7 +323,7 @@
 
       <summary>원인 -2</summary>
 
-      <div  markdown="1">
+      <div markdown="1">
 
         - `web_1 exited with code 1` 와 함께 project app 도커 실행이 중단된다
 
@@ -355,7 +355,7 @@
 
       <summary>해결</summary>
 
-      <div  markdown="1">
+      <div markdown="1">
 
       1. db voluens에서 `/var/lib/mysql/` 삭제
 
@@ -370,7 +370,7 @@
 
       <summary>무엇이 이 문제를 어렵게 만들었는가?</summary>
 
-      <div  markdown="1">
+      <div markdown="1">
         
       나는 db 데이터의 유무를 **`제작한 api를 통해`** 체크했는데 **`원인 -1`**을 해결했을때는 `**project app의 도커가 종료**`되면 api를 통해 체크를 할 수 없었다.
 
@@ -402,13 +402,13 @@
 
   <summary>문제 -2</summary>
 
-  <div  markdown="1">
+  <div markdown="1">
 
     <details>
 
     <summary>문제</summary>
 
-    <div  markdown="1">
+    <div markdown="1">
 
     - 배포를 했을때 `crontab이 작동하지않는다`
 
@@ -416,7 +416,7 @@
 
     <summary>문제상황</summary>
 
-    <div  markdown="1">
+    <div markdown="1">
 
       - crontab 작동 시간이 되었는데 아무 반응이없다
 
@@ -434,7 +434,7 @@
 
     <summary>추측</summary>
 
-    <div  markdown="1">
+    <div markdown="1">
 
       - crontab으로 batch를 구현한 팀원은 컨테이너로 테스트를 하지 않은 상태였다
 
@@ -454,7 +454,7 @@
 
   <summary>원인 분석 및 해결</summary>
 
-  <div  markdown="1">
+  <div markdown="1">
 
     - docker-compose시 나오는 `로그를 전부 읽어보았다`
 
@@ -508,7 +508,7 @@
 
   <summary>무엇이 이 문제를 어렵게 만들었는가?</summary>
 
-  <div  markdown="1">
+  <div markdown="1">
 
     cromtab의 문제만 본다면 `crontab의 log가 어떤식으로 출력되는지 알지못해 문제를 더욱 어렵게 만들었다` 할 수 있지만 근본적인 문제는 `구현과 배포의 조화가 이루어 지지않았다`,
 
@@ -536,7 +536,7 @@
 
 <summary>류성훈</summary>
 
-<div  markdown="1">
+<div markdown="1">
 
   - 구현한 기능
       - Django 프로젝트 초기세팅
@@ -564,7 +564,7 @@
 
 <summary>정미정</summary>
 
-<div  markdown="1">
+<div markdown="1">
 
   구현한 기능
 
