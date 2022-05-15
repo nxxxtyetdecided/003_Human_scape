@@ -1,19 +1,11 @@
 
 <div  align="center">
 
-  
-
 # Wanted Backend Pre Onboarding Project 003
-
-  
 
 <img  width="400"  src="https://user-images.githubusercontent.com/72593394/167660736-32c28f81-39f0-43d2-9797-6e74b73b53a7.jpg">
 
-  
-
 </div>
-
-  
 
 ## 목차
 
@@ -33,11 +25,7 @@
 
 - [기술 스택](#-사용된-기술-스택)
 
-  
-
 <div  align="center">
-
-  
 
 ## 👨‍👨‍👦‍👦 Team "D" member
 
@@ -46,12 +34,7 @@
 |<img  src="https://avatars.githubusercontent.com/u/39396492?v=4"  width="200"/> | <img  src="https://avatars.githubusercontent.com/u/86823305?v=4"  width="200"/> | <img  src="https://avatars.githubusercontent.com/u/72593394?v=4"  width="200"/> |<img  src="https://avatars.githubusercontent.com/u/86827063?v=4"  width="200"/> |
 |[Github](https://github.com/gshduet)|[Github](https://github.com/Cloudblack)|[Github](https://github.com/rsh1994)|[Github](https://github.com/nxxxtyetdecided)|
 
-
 <br>
-
-
-  
-  
 
 |<img  height="200"  width="380"  src="https://retaintechnologies.com/wp-content/uploads/2020/04/Project-Management-Mantenimiento-1.jpg">|<img  height="200"  width="330"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGElLjafMUhHglmqwh9lRh_sVzOCQyBiPNfQ&usqp=CAU">|
 |:------:|:------:|
@@ -63,7 +46,6 @@
 </div>
 
   
-
 # 💻 Project
 
 ### 💭 프로젝트 설명 & 분석
@@ -109,21 +91,21 @@
 
   <div  markdown="1">
 
-  1. 초기 DB 설계 시 오픈 API에서 받아 온 임상시험 정보(이하 정보)를 토대로 생성한 각각의 레코드(로우, 행)에 생성 시각을 나타내는 `created_at`, 최신화 시각을 나타내는 `updated_at`을 추가하고 이를 통해 이력관리를 계획함.
+    1. 초기 DB 설계 시 오픈 API에서 받아 온 임상시험 정보(이하 정보)를 토대로 생성한 각각의 레코드(로우, 행)에 생성 시각을 나타내는 `created_at`, 최신화 시각을 나타내는 `updated_at`을 추가하고 이를 통해 이력관리를 계획함.
 
-  2. 이후 매일 자정마다 진행될 `batch_task`는 다음과 같이 구성
+    2. 이후 매일 자정마다 진행될 `batch_task`는 다음과 같이 구성
 
-    a. 오픈 API를 통해 받아온 데이터들 중 `과제번호` 가 제일 고유성이 있는 항목일 것이라 판단, `task_id` 컬럼으로 지정하고 primary_key로 선언
+      a. 오픈 API를 통해 받아온 데이터들 중 `과제번호` 가 제일 고유성이 있는 항목일 것이라 판단, `task_id` 컬럼으로 지정하고 primary_key로 선언
 
-    b.  `과제번호`를 토대로 새로 입력해야 할 정보인지 DB에 이미 존재하고 있는 정보인지 구분
+      b.  `과제번호`를 토대로 새로 입력해야 할 정보인지 DB에 이미 존재하고 있는 정보인지 구분
 
-      - DB에 존재하지 않는 정보는 레코드를 새로 생성
+        - DB에 존재하지 않는 정보는 레코드를 새로 생성
 
-      - 이미 DB에 입력한 정보일 경우 받아온 값과 비교해 변경사항이 있다면 최신화
+        - 이미 DB에 입력한 정보일 경우 받아온 값과 비교해 변경사항이 있다면 최신화
 
-    c. 이 과정은 `Django`에서 제공하는 `update_or_create` 메소드를 사용
+      c. 이 과정은 `Django`에서 제공하는 `update_or_create` 메소드를 사용
 
-  3. 정보를 불러와 조회할 때 `created_at`, `updated_at` 항목을 바탕으로 최신화 시점을 분류하고 최근 일주일 내 변경사항이 있는 정보를 조회하는 API를 구현
+    3. 정보를 불러와 조회할 때 `created_at`, `updated_at` 항목을 바탕으로 최신화 시점을 분류하고 최근 일주일 내 변경사항이 있는 정보를 조회하는 API를 구현
 
   </div>
 
@@ -135,15 +117,15 @@
 
   <div markdown="1">
 
-  1.  `update_or_create` 메소드를 사용해 `batch_task`를 구현 했을 경우 새로운 정보를 레코드로 입력하는 과정은 계획대로 구현됨
+    1.  `update_or_create` 메소드를 사용해 `batch_task`를 구현 했을 경우 새로운 정보를 레코드로 입력하는 과정은 계획대로 구현됨
 
-  2. 받아온 정보와 이미 DB에 입력 된 정보를 비교해 값을 업데이트 하는 과정을 진행하던 중 `update_or_create` 메소드의 로직 문제로 최신화 할 값이 없더라도 `update`가 진행, `updated_at` 항목이 batch_task를 진행한 시각으로 최신화 되어버림.
+    2. 받아온 정보와 이미 DB에 입력 된 정보를 비교해 값을 업데이트 하는 과정을 진행하던 중 `update_or_create` 메소드의 로직 문제로 최신화 할 값이 없더라도 `update`가 진행, `updated_at` 항목이 batch_task를 진행한 시각으로 최신화 되어버림.
 
-    a.  `update_or_create`의 소스코드를 확인해 본 결과 `create` 가 아닌 경우에는 `update` 메소드의 로직을 그대로 따른 후 마지막에 `save()`를 실행함을 확인
+      a.  `update_or_create`의 소스코드를 확인해 본 결과 `create` 가 아닌 경우에는 `update` 메소드의 로직을 그대로 따른 후 마지막에 `save()`를 실행함을 확인
 
-    ![Untitled](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%204.png)
+      ![Untitled](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%204.png)
 
-    b. 이럴 경우 값의 변화 유무에 상관 없이 일단 값 변경에 대한 쿼리를 날리므로 `updated_at` 이 최신화 될 수 밖에 없음
+      b. 이럴 경우 값의 변화 유무에 상관 없이 일단 값 변경에 대한 쿼리를 날리므로 `updated_at` 이 최신화 될 수 밖에 없음
 
   </div>
 
@@ -155,27 +137,27 @@
 
   <div markdown="1">
 
-  1.  `update_or_create` 대신 `get_or_create`를 사용
+    1.  `update_or_create` 대신 `get_or_create`를 사용
 
-  2. 얻은 정보의 `task_id`를 기준으로 `create`, `get` 여부를 결정
+    2. 얻은 정보의 `task_id`를 기준으로 `create`, `get` 여부를 결정
 
-    -  `create`일 경우 : 해당 정보의 새로운 레코드 생성
+      -  `create`일 경우 : 해당 정보의 새로운 레코드 생성
 
-    -  `get`일 경우 : 정보의 `task_id` 를 가진 레코드를 불러온 뒤
+      -  `get`일 경우 : 정보의 `task_id` 를 가진 레코드를 불러온 뒤
 
-    - 변경될 것이라 판단한 ’연구기간’, ‘전체목표연구대상자수’, ‘임상시험단계(연구모형)’의 세부정보만 비교, 변경된 것이 있다면 `save()` 하여 `updated_at`의 변동을 최소화 시킴
+      - 변경될 것이라 판단한 ’연구기간’, ‘전체목표연구대상자수’, ‘임상시험단계(연구모형)’의 세부정보만 비교, 변경된 것이 있다면 `save()` 하여 `updated_at`의 변동을 최소화 시킴
 
-      <aside>
+        <aside>
 
-      🗣 위의 세 요소를 변동될 것이라 판단한 이유는 다음과 같음
+        🗣 위의 세 요소를 변동될 것이라 판단한 이유는 다음과 같음
 
-      1. 세 요소만 빈 값이 존재
+        1. 세 요소만 빈 값이 존재
 
-      2. 과제번호, 과제명, 연구책임기관, 진료과의 경우 고유명사와 비슷하다 판단, 쉽게 변하지 않을 것
+        2. 과제번호, 과제명, 연구책임기관, 진료과의 경우 고유명사와 비슷하다 판단, 쉽게 변하지 않을 것
 
-      3. 연구범위의 경우 단일/다수로 뚜렷한 차이를 보였으며 연구종류의 경우 기타 항목이 존재하여 기준이 확실치 않을 경우 해당 항목으로 분류 될 것이라 판단
+        3. 연구범위의 경우 단일/다수로 뚜렷한 차이를 보였으며 연구종류의 경우 기타 항목이 존재하여 기준이 확실치 않을 경우 해당 항목으로 분류 될 것이라 판단
 
-      </aside>
+        </aside>
 
   </div>
 
@@ -187,23 +169,23 @@
 
   <div markdown="1">
 
-  - 처음 계획했던
+    - 처음 계획했던
 
-    - DB에 입력되지 않은 임상연구 정보를 받아왔을 경우 DB에 새로 입력
+      - DB에 입력되지 않은 임상연구 정보를 받아왔을 경우 DB에 새로 입력
 
-    - 이미 존재하는 임상연구 정보일 경우 변동 예상 항목을 비교해 변동이 있을 경우 해당 항목을 최신화
+      - 이미 존재하는 임상연구 정보일 경우 변동 예상 항목을 비교해 변동이 있을 경우 해당 항목을 최신화
 
-    - 세부정보 최신화가 진행될 경우 `updated_at` 값 역시 최신화하며 `updated_at` 값을 통해 최신화 시각을 식별
+      - 세부정보 최신화가 진행될 경우 `updated_at` 값 역시 최신화하며 `updated_at` 값을 통해 최신화 시각을 식별
 
-    등의 목표에 부합할 수 있었다.
+      등의 목표에 부합할 수 있었다.
 
-  - 또한 해당 목표를 달성함에 따라 요구 사항에 존재했던
+    - 또한 해당 목표를 달성함에 따라 요구 사항에 존재했던
 
-    1.  `기존 데이터와 API 데이터간의 수정된 사항을 비교하여 해당 임상시험이 업데이트 된 것인지 새로 추가된 것 인지 구별이 가능해야함`
+      1.  `기존 데이터와 API 데이터간의 수정된 사항을 비교하여 해당 임상시험이 업데이트 된 것인지 새로 추가된 것 인지 구별이 가능해야함`
 
-    2.  `최근 일주일내에 업데이트(변경사항이 있는) 된 임상정보 리스트`
+      2.  `최근 일주일내에 업데이트(변경사항이 있는) 된 임상정보 리스트`
 
-    조건을 만족시킬 수 있었으며 특히 2번 요구 사항을 조회하는 API 구현을 쉽게 마무리 할 수 있었다.
+      조건을 만족시킬 수 있었으며 특히 2번 요구 사항을 조회하는 API 구현을 쉽게 마무리 할 수 있었다.
 
   </div>
 
@@ -212,8 +194,6 @@
 </div>
 
 </details>
-
-    
 
 <details>
 
@@ -252,7 +232,7 @@
   <details>
 
   <summary>문제 -1</summary>
-  
+
   <div markdown="1">
 
     <details>
@@ -261,7 +241,7 @@
 
     <div  markdown="1">
 
-    docker-compose시 api를 통해 `데이터 리스트를 조회하면 아무것도 나오지 않는(비어있는 db)` 문제가 생겼다
+      docker-compose시 api를 통해 `데이터 리스트를 조회하면 아무것도 나오지 않는(비어있는 db)` 문제가 생겼다
 
       <details>
 
@@ -269,11 +249,11 @@
 
       <div  markdown="1">
 
-      - DB의 데이터가 비어있다
+        - DB의 데이터가 비어있다
 
-      - docker-compose는 실행이된다
+        - docker-compose는 실행이된다
 
-      - api는 정상적으로 동작한다
+        - api는 정상적으로 동작한다
 
       </div>
 
@@ -285,7 +265,7 @@
 
       <div  markdown="1">
 
-      - docker-compose 시 db가 제대로 입력되지 않는 것 같다
+        - docker-compose 시 db가 제대로 입력되지 않는 것 같다
 
       </div>
 
@@ -301,9 +281,9 @@
 
     <div  markdown="1">
 
-    - docker-compose시 나오는 로그를 전부 읽어보았다
+      - docker-compose시 나오는 로그를 전부 읽어보았다
 
-    - sql 파일로 db 초기셋팅하는 부분이 동작하지 않는 것을 알게되었다
+      - sql 파일로 db 초기셋팅하는 부분이 동작하지 않는 것을 알게되었다
 
 
       <details>
@@ -311,26 +291,26 @@
       <summary>원인 -1</summary>
 
       <div  markdown="1">
-      
-      ```python
 
-      volumes:
+        ```python
 
-      - data:/var/lib/mysql/
+        volumes:
 
-      - ./db_name.sql:/docker-entrypoint-initdb.d/db_name.sql
+        - data:/var/lib/mysql/
 
-      ```
+        - ./db_name.sql:/docker-entrypoint-initdb.d/db_name.sql
 
-      -  `/var/lib/mysql/`은 mysql 설치 폴더인데
+        ```
 
-      if문으로 mysql 폴더를 체크하고 없으면 initdb.d폴더를 확인해 초기 db를 불러들인다
+        -  `/var/lib/mysql/`은 mysql 설치 폴더인데
 
-      `즉, data:/var/lib/mysql/ 이있으면 initdb.d가 동작을 안한다`
+        if문으로 mysql 폴더를 체크하고 없으면 initdb.d폴더를 확인해 초기 db를 불러들인다
 
-      - /var/lib/mysql/에 내가 쓰던 mysql을 넣었다면 database를 다 가져왔을 것이다 하지만 dockerhub의 image로 된 mysql을 가져와 비어있게되는데 이걸 놓쳤다
+        `즉, data:/var/lib/mysql/ 이있으면 initdb.d가 동작을 안한다`
 
-      - 또 compose 실행시 migrate를 하기때문에 스키마만 생성된것으로 추측된다
+        - /var/lib/mysql/에 내가 쓰던 mysql을 넣었다면 database를 다 가져왔을 것이다 하지만 dockerhub의 image로 된 mysql을 가져와 비어있게되는데 이걸 놓쳤다
+
+        - 또 compose 실행시 migrate를 하기때문에 스키마만 생성된것으로 추측된다
 
       </div>
 
@@ -342,31 +322,31 @@
 
       <div  markdown="1">
 
-      - `web_1 exited with code 1` 와 함께 project app 도커 실행이 중단된다
+        - `web_1 exited with code 1` 와 함께 project app 도커 실행이 중단된다
 
-      - mysql github issue에 같은 문제를 가진 사람이있었는데 초기화될때 뜨는 문구일 뿐이라고 한다
+        - mysql github issue에 같은 문제를 가진 사람이있었는데 초기화될때 뜨는 문구일 뿐이라고 한다
 
         ![ 신경안써도 된다고 하신다 ㅠㅠ](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%205.png)
 
-      신경안써도 된다고 하신다 ㅠㅠ
+        신경안써도 된다고 하신다 ㅠㅠ
 
-      - 뒤늦게 확인해보니
+        - 뒤늦게 확인해보니
 
-        1.  `/var/lib/mysql/`가 없을때 db를 읽지 못해 에러를 발생
+          1.  `/var/lib/mysql/`가 없을때 db를 읽지 못해 에러를 발생
 
-        2. project app이 mysql과 연동 할 수 없어 실행이 중단
+          2. project app이 mysql과 연동 할 수 없어 실행이 중단
 
-        3. mysql이 initdb를 읽어와 db를 생성
+          3. mysql이 initdb를 읽어와 db를 생성
 
-        4. 수동으로 project app을 다시 실행하면 정상으로 작동한다
-
-      </div>
-
-      </details>
+          4. 수동으로 project app을 다시 실행하면 정상으로 작동한다
 
       </div>
 
       </details>
+
+    </div>
+
+    </details>
       
       <details>
 
@@ -389,8 +369,6 @@
 
       <div  markdown="1">
         
-    
-
       나는 db 데이터의 유무를 **`제작한 api를 통해`** 체크했는데 **`원인 -1`**을 해결했을때는 `**project app의 도커가 종료**`되면 api를 통해 체크를 할 수 없었다.
 
       사실 도커가 종료되었다는 것도 모르고 `**db의 문제로 api가 동작하지 않는다고 생각했다**`
@@ -409,9 +387,9 @@
 
       </details>
 
-      </div>
+    </div>
 
-      </details>
+    </details>
 
   </div>  
 
@@ -437,9 +415,9 @@
 
     <div  markdown="1">
 
-    - crontab 작동 시간이 되었는데 아무 반응이없다
+      - crontab 작동 시간이 되었는데 아무 반응이없다
 
-    - docker-compose log 화면에 crontab log가 없었다
+      - docker-compose log 화면에 crontab log가 없었다
 
       ![Untitled](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%206.png)
 
@@ -455,27 +433,25 @@
 
     <div  markdown="1">
 
-    - crontab으로 batch를 구현한 팀원은 컨테이너로 테스트를 하지 않은 상태였다
+      - crontab으로 batch를 구현한 팀원은 컨테이너로 테스트를 하지 않은 상태였다
 
-    - 로컬 컨테이너 테스트는 api 위주로 동작을 테스트했고 crontab을 제대로 체크하지 못했다
+      - 로컬 컨테이너 테스트는 api 위주로 동작을 테스트했고 crontab을 제대로 체크하지 못했다
 
-    - 그렇기 때문에 개발환경과 배포 환경에 따른 문제가 생겼을것이다
+      - 그렇기 때문에 개발환경과 배포 환경에 따른 문제가 생겼을것이다
 
     </div>
 
     </details>
     
-    </div>
+  </div>
 
-    </details>
+  </details>
 
-    <div>
+  <details>
 
-    <details>
+  <summary>원인 분석 및 해결</summary>
 
-    <summary>원인 분석 및 해결</summary>
-
-    <div  markdown="1">
+  <div  markdown="1">
 
     - docker-compose시 나오는 `로그를 전부 읽어보았다`
 
@@ -521,9 +497,9 @@
 
       - 정상 출력을확인
 
-    </div>
+  </div>
 
-    </details>
+  </details>
 
   <details>
 
