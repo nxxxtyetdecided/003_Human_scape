@@ -79,6 +79,60 @@
   
 <br>
 
+## 🔫 로컬에서 실행 방법
+
+1. 깃허브 repository에서 clone을 받습니다.
+
+   `git clone https://github.com/wanted-pre-onboarding-2nd-BE-Team-D/003_Human_scape.git`
+
+2. MySQL에서 DB를 생성합니다.
+
+   `CREATE DATABASE 003_Human_scape`
+
+3. 루트폴더에 `my_settings.py` 를 생성하고 필요한 키값을 넣습니다.
+
+   ```python
+   DATABASES = {
+       'default' : {
+           'ENGINE': 'django.db.backends.mysql',
+           'NAME': 'database 이름'
+           'USER': 'mysql 아이디'
+           'PASSWORD': 'mysql 비밀번호'
+           'HOST': '127.0.0.1',
+           'PORT': '3306',
+   				'OPTIONS': {'charset': 'utf8mb4'}
+       }
+   }
+   
+   SECRET_KEY = 'Django Secret Key'
+   
+   SERVICE_KEY = 'Open API Key'
+   ```
+
+4. 가상환경 생성 후 requirements.txt의 필요한 라이브러리를 다운로드 합니다.
+
+   ```python
+   Windows:
+   1. python -m venv venv
+   2. venv\Scripts\activate.bat
+   3. pip install -r requirements.txt
+   
+   Mac:
+   1. python -m venv venv
+   2. source venv\bin\activate
+   3. pip install -r requirements.txt
+   ```
+
+5. migrate를 합니다.
+
+   `python manage.py migrate`
+
+6. 로컬서버를 실행시킵니다.
+
+   `python manage.py runserver`
+
+<br>
+
 ## 🎭 프로젝트 후기
 
 구현한 방법과 이유 어려웠던 점 , 간략한 내용(개인) 서술
