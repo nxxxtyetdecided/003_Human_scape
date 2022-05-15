@@ -39,7 +39,6 @@
 |<img  height="200"  width="380"  src="https://retaintechnologies.com/wp-content/uploads/2020/04/Project-Management-Mantenimiento-1.jpg">|<img  height="200"  width="330"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGElLjafMUhHglmqwh9lRh_sVzOCQyBiPNfQ&usqp=CAU">|
 |:------:|:------:|
 |💻 [**Team work**](https://mature-citron-a04.notion.site/Wanted_Pre_Onboarding-6af013e2bb3b43739cebc641de4ff558) | 📒 [**Project page**](https://mature-citron-a04.notion.site/3-95c29457557b4984a4c00ab9b1bb3769)|
-
 |공지사항, 컨벤션 공유 등<br> 우리 팀을 위한 룰 |요구사항 분석, 정보 공유 및<br> 원할한 프로젝트를 위해 사용|
 
   
@@ -450,132 +449,132 @@
 
     </details>
 
+<details>
+
+<summary>문제 -2</summary>
+
+<div markdown="1">
+
   <details>
 
-  <summary>문제 -2</summary>
+  <summary>문제</summary>
 
   <div markdown="1">
 
-    <details>
+  - 배포를 했을때 `crontab이 작동하지않는다`
 
-    <summary>문제</summary>
+  <details>
 
-    <div markdown="1">
+  <summary>문제상황</summary>
 
-    - 배포를 했을때 `crontab이 작동하지않는다`
+  <div markdown="1">
 
-    <details>
+  - crontab 작동 시간이 되었는데 아무 반응이없다
 
-    <summary>문제상황</summary>
+  - docker-compose log 화면에 crontab log가 없었다
 
-    <div markdown="1">
+  <img  src="https://user-images.githubusercontent.com/72593394/168459697-f4b1b6f9-1e52-449b-b70e-e79f68d88d8c.png"  width="500"/>
 
-    - crontab 작동 시간이 되었는데 아무 반응이없다
+  - crontab log 파일이 생성되어야 하는 위치에 아무것도 없다
 
-    - docker-compose log 화면에 crontab log가 없었다
+  </div>
 
-    <img  src="https://user-images.githubusercontent.com/72593394/168459697-f4b1b6f9-1e52-449b-b70e-e79f68d88d8c.png"  width="500"/>
+  </details>
 
-    - crontab log 파일이 생성되어야 하는 위치에 아무것도 없다
+  <details>
 
-    </div>
+  <summary>추측</summary>
 
-    </details>
+  <div markdown="1">
 
-    <details>
+  - crontab으로 batch를 구현한 팀원은 컨테이너로 테스트를 하지 않은 상태였다
 
-    <summary>추측</summary>
+  - 로컬 컨테이너 테스트는 api 위주로 동작을 테스트했고 crontab을 제대로 체크하지 못했다
 
-    <div markdown="1">
+  - 그렇기 때문에 개발환경과 배포 환경에 따른 문제가 생겼을것이다
 
-    - crontab으로 batch를 구현한 팀원은 컨테이너로 테스트를 하지 않은 상태였다
+  </div>
 
-    - 로컬 컨테이너 테스트는 api 위주로 동작을 테스트했고 crontab을 제대로 체크하지 못했다
-
-    - 그렇기 때문에 개발환경과 배포 환경에 따른 문제가 생겼을것이다
-
-    </div>
-
-    </details>
-      
-    </div>
-
-    </details>
-
-    <details>
-
-    <summary>원인 분석 및 해결</summary>
-
-    <div markdown="1">
-
-    - docker-compose시 나오는 `로그를 전부 읽어보았다`
-
-    - 문제 1 - 배포환경에서 crontab을 인식하지 못하는것을 알게되었다
-
-      - 원인 ⇒ 배포환경에서 `django -crontab을 설치하지 못함`
-
-      - 해결 ⇒ `RUN*apt-get install -y cron` Dockerfile 에서 cron 설치*
-
-    - 문제 2 ⇒ cronjobs가 추가 되지 않음을 알게되었다
-
-      - 원인⇒ `crontab을 추가하는 명령어를 입력 해야한다`
-
-      - 해결⇒ docker-compose시 `python [manage.py](http://manage.py/) crontab add` 추가
-
-    - 문제 3 ⇒ log파일이 생성되지않는다
-
-      - 원인⇒ `cron 서비스를 켜주어야 했다`
-
-      - 해결 ⇒ `service cron start` cron 서비스를 켜준다
-
-    <img  src="https://user-images.githubusercontent.com/72593394/168459708-b341a6f7-c2be-43a2-a9ed-43eaa4a8391c.png"  width="500"/>
-
-        Batch_task.log2 가 생성됨
-
-    - 문제 4 ⇒ `Batch_task.log2`가 아닌 `Batch_task.log`가 생성되어야함
-
-      - 원인 ⇒ log 파일 문제를 해결하고자 `cronjobs 구문을 수정`했기 때문
-
-      - 해결 ⇒ cronjobs 구문을 원래 대로 되돌림 하지만 `log가 다시 생성되지 않았다`
-
-    - 문제 5 ⇒ cronjobs 구문을 `제대로 사용했음에도` log가 생성되지않는다
-
-      - 원인 ⇒ cronjobs는 제대로 실행되고있었으나 `출력되는 값이 없어 log가 생성되지않았다` 또한 `docker-compose에서 cronjob이 동작한다는 log가 출력될 것으로 오해했다, 정상 동작시에도 출력되지않는다`
-
-      - 해결 ⇒ `hello를 출력하는 테스트용 py 파일`을 만들어 테스트, log가 제대로 찍혀 문제를 찾았고 `원래 코드에서 출력을 추가`했다
-
-        <img  src="https://user-images.githubusercontent.com/72593394/168459706-169bb103-dfa5-4f96-ab1b-ca99346d24de.png"  width="500"/>
-
-      - 테스트
-
-    <img  src="https://user-images.githubusercontent.com/72593394/168459705-59ebad7f-7126-492b-8490-310e6a139f00.png"  width="500"/>
-
-      - 정상 출력을확인
-
-    </div>
-
-    </details>
-
-    <details>
-
-    <summary>무엇이 이 문제를 어렵게 만들었는가?</summary>
-
-    <div markdown="1">
-
-    cromtab의 문제만 본다면 `crontab의 log가 어떤식으로 출력되는지 알지못해 문제를 더욱 어렵게 만들었다` 할 수 있지만 근본적인 문제는 `구현과 배포의 조화가 이루어 지지않았다`,
-
-    `동작을 확인 할 수 있는 테스트코드가 존재하지않았다` 그리고 `코드리뷰가 부족했다`
-
-    이번 프로젝트에서 배포를 메인으로 작업했는데 개발이 완성된 것을 배포한다는 생각을 하고 있었다 그리고 정신없이 배포를 구현하다보니 나는 `개발쪽 정보를 잘 모르고 개발쪽에선 배포쪽 정보를 모르게 되었다`
-
-    일찍 `로컬에서 docker-compose 사용하는 방법을 알려 배포환경에서 테스트`를 할 수 있게 하거나, 반대로 `무엇을 테스트 하는지 알았다면` 배포환경에서 테스트를 해 이런 문제를 방지 하지 않았나 생각하게되었다.
-
-    `서로 다른 업무를 맡아 각자 일을 했지만 하나의 작품을 만드는 만큼 프로젝트의 전반적인 이해가 필요하다는 점을 제대로 느꼈다`
-
-    </div>
-
-    </details>
+  </details>
     
+  </div>
+
+  </details>
+
+  <details>
+
+  <summary>원인 분석 및 해결</summary>
+
+  <div markdown="1">
+
+  - docker-compose시 나오는 `로그를 전부 읽어보았다`
+
+  - 문제 1 - 배포환경에서 crontab을 인식하지 못하는것을 알게되었다
+
+    - 원인 ⇒ 배포환경에서 `django -crontab을 설치하지 못함`
+
+    - 해결 ⇒ `RUN*apt-get install -y cron` Dockerfile 에서 cron 설치*
+
+  - 문제 2 ⇒ cronjobs가 추가 되지 않음을 알게되었다
+
+    - 원인⇒ `crontab을 추가하는 명령어를 입력 해야한다`
+
+    - 해결⇒ docker-compose시 `python [manage.py](http://manage.py/) crontab add` 추가
+
+  - 문제 3 ⇒ log파일이 생성되지않는다
+
+    - 원인⇒ `cron 서비스를 켜주어야 했다`
+
+    - 해결 ⇒ `service cron start` cron 서비스를 켜준다
+
+  <img  src="https://user-images.githubusercontent.com/72593394/168459708-b341a6f7-c2be-43a2-a9ed-43eaa4a8391c.png"  width="500"/>
+
+      Batch_task.log2 가 생성됨
+
+  - 문제 4 ⇒ `Batch_task.log2`가 아닌 `Batch_task.log`가 생성되어야함
+
+    - 원인 ⇒ log 파일 문제를 해결하고자 `cronjobs 구문을 수정`했기 때문
+
+    - 해결 ⇒ cronjobs 구문을 원래 대로 되돌림 하지만 `log가 다시 생성되지 않았다`
+
+  - 문제 5 ⇒ cronjobs 구문을 `제대로 사용했음에도` log가 생성되지않는다
+
+    - 원인 ⇒ cronjobs는 제대로 실행되고있었으나 `출력되는 값이 없어 log가 생성되지않았다` 또한 `docker-compose에서 cronjob이 동작한다는 log가 출력될 것으로 오해했다, 정상 동작시에도 출력되지않는다`
+
+    - 해결 ⇒ `hello를 출력하는 테스트용 py 파일`을 만들어 테스트, log가 제대로 찍혀 문제를 찾았고 `원래 코드에서 출력을 추가`했다
+
+      <img  src="https://user-images.githubusercontent.com/72593394/168459706-169bb103-dfa5-4f96-ab1b-ca99346d24de.png"  width="500"/>
+
+    - 테스트
+
+  <img  src="https://user-images.githubusercontent.com/72593394/168459705-59ebad7f-7126-492b-8490-310e6a139f00.png"  width="500"/>
+
+    - 정상 출력을확인
+
+  </div>
+
+  </details>
+
+  <details>
+
+  <summary>무엇이 이 문제를 어렵게 만들었는가?</summary>
+
+  <div markdown="1">
+
+  cromtab의 문제만 본다면 `crontab의 log가 어떤식으로 출력되는지 알지못해 문제를 더욱 어렵게 만들었다` 할 수 있지만 근본적인 문제는 `구현과 배포의 조화가 이루어 지지않았다`,
+
+  `동작을 확인 할 수 있는 테스트코드가 존재하지않았다` 그리고 `코드리뷰가 부족했다`
+
+  이번 프로젝트에서 배포를 메인으로 작업했는데 개발이 완성된 것을 배포한다는 생각을 하고 있었다 그리고 정신없이 배포를 구현하다보니 나는 `개발쪽 정보를 잘 모르고 개발쪽에선 배포쪽 정보를 모르게 되었다`
+
+  일찍 `로컬에서 docker-compose 사용하는 방법을 알려 배포환경에서 테스트`를 할 수 있게 하거나, 반대로 `무엇을 테스트 하는지 알았다면` 배포환경에서 테스트를 해 이런 문제를 방지 하지 않았나 생각하게되었다.
+
+  `서로 다른 업무를 맡아 각자 일을 했지만 하나의 작품을 만드는 만큼 프로젝트의 전반적인 이해가 필요하다는 점을 제대로 느꼈다`
+
+  </div>
+
+  </details>
+  
 </div>
 
 </details>
@@ -664,19 +663,19 @@
 
       **어려웠던 점**
 
-        - gernics.view를 처음 사용해보는데 제공해주는 기능이 많지만 원하는 추가적인 기능이 있을 때 메소드 오버라이딩의 필요성을 느꼈습니다..
+      - gernics.view를 처음 사용해보는데 제공해주는 기능이 많지만 원하는 추가적인 기능이 있을 때 메소드 오버라이딩의 필요성을 느꼈습니다..
 
-        - 쿼리 파라미터가 많아 `ListAPIView` → `GenericAPIView -> get_queryset`를 커스텀했습니다.
+      - 쿼리 파라미터가 많아 `ListAPIView` → `GenericAPIView -> get_queryset`를 커스텀했습니다.
 
-        - foreignkey로 연결한 값들을 `select_related`로 불러왔으나 쿼리문을 확인해보니 foreignkey로 연결한 테이블의 다른 값을 더 가져오지 않아 `select_related`가 필요없다는 것을 알게 되어 `select_related`의 개념을 이해하게 됐습니다.
+      - foreignkey로 연결한 값들을 `select_related`로 불러왔으나 쿼리문을 확인해보니 foreignkey로 연결한 테이블의 다른 값을 더 가져오지 않아 `select_related`가 필요없다는 것을 알게 되어 `select_related`의 개념을 이해하게 됐습니다.
 
-        - serializer에 foreignkey로 연결한 테이블들은 id로 나와서 값으로 보이도록 수정해야했다. `serializer.Charfield`로 값을 보여줌으로 해결했습니다.
+      - serializer에 foreignkey로 연결한 테이블들은 id로 나와서 값으로 보이도록 수정해야했다. `serializer.Charfield`로 값을 보여줌으로 해결했습니다.
 
-        이전
+    이전
         
     <img  src="https://user-images.githubusercontent.com/72593394/168459704-f9bc3774-49e9-4683-b8e2-5b404f3a813d.png"  width="500"/>
 
-        이후
+    이후
 
     <img  src="https://user-images.githubusercontent.com/72593394/168459703-beec41d7-3748-4762-9f35-8b1fef101ce6.png"  width="500"/>
 
@@ -690,13 +689,13 @@
     
   **어려웠던 점**
 
-    ❗ 로컬에서 swagger 주소에 들어가 실행했을 때 잘 작동했으나 배포 후 실행해보니 `failed fetch` 가 출력됐습니다.
+  ❗ 로컬에서 swagger 주소에 들어가 실행했을 때 잘 작동했으나 배포 후 실행해보니 `failed fetch` 가 출력됐습니다.
 
   <img  src="https://user-images.githubusercontent.com/72593394/168459702-52838a89-e843-4805-82ec-8d430b368bb7.png"  width="500"/>
 
-    `ec2주소/api/research`로 요청이 가야하는 데 nginx.conf에서 설정해준 proxy_path인 `web/api/research`로 연결이 되어 오류가 났습니다.
+  `ec2주소/api/research`로 요청이 가야하는 데 nginx.conf에서 설정해준 proxy_path인 `web/api/research`로 연결이 되어 오류가 났습니다.
 
-    proxy_path는 docker-compose에서 작성된 컨테이너명으로 변경하면 아예 연결이 되지 않아 변경할 수 있는 부분이 아니였습니다.
+  proxy_path는 docker-compose에서 작성된 컨테이너명으로 변경하면 아예 연결이 되지 않아 변경할 수 있는 부분이 아니였습니다.
 
   ```yaml
 
@@ -716,15 +715,15 @@
 
   찾아본 결과 proxy_set header로 변수를 설정해야한다는 것을 알게되어
 
-    - Host : 요청이 들어왔을 때 host 명
+  - Host : 요청이 들어왔을 때 host 명
 
-    - X-Real-IP: 요청한 클라이언트의 실제 IP
+  - X-Real-IP: 요청한 클라이언트의 실제 IP
 
-      -  `$remote_addr`: 요청한 클라이언트 주소
+    -  `$remote_addr`: 요청한 클라이언트 주소
 
-    - X-Forwarded-For: 클라이언트의 IP 주소, 이전에 프록시 서버가 또 있었다면 그 IP 를 의미
+  - X-Forwarded-For: 클라이언트의 IP 주소, 이전에 프록시 서버가 또 있었다면 그 IP 를 의미
 
-      -  **$proxy_add_x_forwarded_for**: 요청 헤더와 그 뒤에 따라오는 클라이언트의 원격 주소를 포함
+    -  **$proxy_add_x_forwarded_for**: 요청 헤더와 그 뒤에 따라오는 클라이언트의 원격 주소를 포함
 
   이 세가지를 추가 후 다시 배포한 결과
 
