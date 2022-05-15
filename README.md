@@ -460,27 +460,27 @@
 
   <div markdown="1">
 
-    <details>
+  <details>
 
-    <summary>문제</summary>
+  <summary>문제</summary>
 
-    <div markdown="1">
+  <div markdown="1">
 
-    - 배포를 했을때 `crontab이 작동하지않는다`
+  - 배포를 했을때 `crontab이 작동하지않는다`
 
-    <details>
+  <details>
 
-    <summary>문제상황</summary>
+  <summary>문제상황</summary>
 
-    <div markdown="1">
+  <div markdown="1">
 
-      - crontab 작동 시간이 되었는데 아무 반응이없다
+    - crontab 작동 시간이 되었는데 아무 반응이없다
 
-      - docker-compose log 화면에 crontab log가 없었다
+    - docker-compose log 화면에 crontab log가 없었다
 
-      <img  src="https://user-images.githubusercontent.com/72593394/168459697-f4b1b6f9-1e52-449b-b70e-e79f68d88d8c.png"  width="500"/>
+    <img  src="https://user-images.githubusercontent.com/72593394/168459697-f4b1b6f9-1e52-449b-b70e-e79f68d88d8c.png"  width="500"/>
 
-      - crontab log 파일이 생성되어야 하는 위치에 아무것도 없다
+    - crontab log 파일이 생성되어야 하는 위치에 아무것도 없다
 
     </div>
 
@@ -492,11 +492,11 @@
 
     <div markdown="1">
 
-      - crontab으로 batch를 구현한 팀원은 컨테이너로 테스트를 하지 않은 상태였다
+    - crontab으로 batch를 구현한 팀원은 컨테이너로 테스트를 하지 않은 상태였다
 
-      - 로컬 컨테이너 테스트는 api 위주로 동작을 테스트했고 crontab을 제대로 체크하지 못했다
+    - 로컬 컨테이너 테스트는 api 위주로 동작을 테스트했고 crontab을 제대로 체크하지 못했다
 
-      - 그렇기 때문에 개발환경과 배포 환경에 따른 문제가 생겼을것이다
+    - 그렇기 때문에 개발환경과 배포 환경에 따른 문제가 생겼을것이다
 
     </div>
 
