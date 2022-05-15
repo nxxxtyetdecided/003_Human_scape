@@ -181,7 +181,7 @@
 
     1. `update_or_create`의 소스코드를 확인해 본 결과 `create` 가 아닌 경우에는 `update` 메소드의 로직을 그대로 따른 후 마지막에 `save()`를 실행함을 확인
 
-    ![Untitled](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%204.png)
+    ![Untitled](https://user-images.githubusercontent.com/72593394/168459528-92270c38-1d55-4826-82d2-be36a1a17a4e.png)
 
     2. 이럴 경우 값의 변화 유무에 상관 없이 일단 값 변경에 대한 쿼리를 날리므로 `updated_at` 이 최신화 될 수 밖에 없음
 
