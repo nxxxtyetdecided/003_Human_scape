@@ -100,7 +100,7 @@
            'PASSWORD': 'mysql 비밀번호'
            'HOST': '127.0.0.1',
            'PORT': '3306',
-   				'OPTIONS': {'charset': 'utf8mb4'}
+   				 'OPTIONS': {'charset': 'utf8mb4'}
        }
    }
    
@@ -147,6 +147,7 @@
 
   <summary>초기 계획</summary>
 
+  <div  markdown="1">
 
   1. 초기 DB 설계 시 오픈 API에서 받아 온 임상시험 정보(이하 정보)를 토대로 생성한 각각의 레코드(로우, 행)에 생성 시각을 나타내는 `created_at`, 최신화 시각을 나타내는 `updated_at`을 추가하고 이를 통해 이력관리를 계획함.
 
@@ -164,6 +165,8 @@
 
   3. 정보를 불러와 조회할 때 `created_at`, `updated_at` 항목을 바탕으로 최신화 시점을 분류하고 최근 일주일 내 변경사항이 있는 정보를 조회하는 API를 구현
 
+  <div>
+
   </details>
 
   <details>
@@ -172,15 +175,15 @@
 
   <div markdown="1">
 
-  1.  `update_or_create` 메소드를 사용해 `batch_task`를 구현 했을 경우 새로운 정보를 레코드로 입력하는 과정은 계획대로 구현됨
+    1.  `update_or_create` 메소드를 사용해 `batch_task`를 구현 했을 경우 새로운 정보를 레코드로 입력하는 과정은 계획대로 구현됨
 
-  2. 받아온 정보와 이미 DB에 입력 된 정보를 비교해 값을 업데이트 하는 과정을 진행하던 중 `update_or_create` 메소드의 로직 문제로 최신화 할 값이 없더라도 `update`가 진행, `updated_at` 항목이 batch_task를 진행한 시각으로 최신화 되어버림.
+    2. 받아온 정보와 이미 DB에 입력 된 정보를 비교해 값을 업데이트 하는 과정을 진행하던 중 `update_or_create` 메소드의 로직 문제로 최신화 할 값이 없더라도 `update`가 진행, `updated_at` 항목이 batch_task를 진행한 시각으로 최신화 되어버림.
 
-    a.  `update_or_create`의 소스코드를 확인해 본 결과 `create` 가 아닌 경우에는 `update` 메소드의 로직을 그대로 따른 후 마지막에 `save()`를 실행함을 확인
+      a.  `update_or_create`의 소스코드를 확인해 본 결과 `create` 가 아닌 경우에는 `update` 메소드의 로직을 그대로 따른 후 마지막에 `save()`를 실행함을 확인
 
-    ![Untitled](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%204.png)
+      ![Untitled](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%204.png)
 
-    b. 이럴 경우 값의 변화 유무에 상관 없이 일단 값 변경에 대한 쿼리를 날리므로 `updated_at` 이 최신화 될 수 밖에 없음
+      b. 이럴 경우 값의 변화 유무에 상관 없이 일단 값 변경에 대한 쿼리를 날리므로 `updated_at` 이 최신화 될 수 밖에 없음
 
   </div>
 
