@@ -584,9 +584,9 @@
 
     - 정보의 수정이나 삭제는 OPEN API에서 이루어지는 것이고
 
-  지금 작성한 API는 정보를 보여주는 기능만 하는 게 맞다고 판단해서
+      지금 작성한 API는 정보를 보여주는 기능만 하는 게 맞다고 판단해서
 
-  읽는 기능만 구현했습니다.. (`ListAPIView` , `RetriveAPIView`)
+      읽는 기능만 구현했습니다.. (`ListAPIView` , `RetriveAPIView`)
 
     - generics.view를 이해하고자 사용해봤습니다.
 
@@ -598,7 +598,7 @@
 
         - pagination을 위한 offset, limit
 
-          - 쿼리 파라미터로 받아 적용했습니다.
+        - 쿼리 파라미터로 받아 적용했습니다.
 
         - 검색 기능 제공
 
@@ -617,18 +617,18 @@
           - serializer에 foreignkey로 연결한 테이블들은 id로 나와서 값으로 보이도록 수정해야했다. `serializer.Charfield`로 값을 보여줌으로 해결했습니다.
 
           이전
-          
+        
           ![Untitled](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%2010.png)
 
           이후
 
-          ![Untitled](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%2011.png)
+         ![Untitled](3%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%20%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6%20-%20%E1%84%92%E1%85%B2%E1%84%86%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%20cc52e326cfe24898a271089a92ef4ba3/Untitled%2011.png)
 
       2. 특정 임상정보 API
 
         - 특정 임상정보 읽기
 
-        - task_id가 pk 이므로 `lookup_field=task_id`로 설정하는 것이 직관적이라고 생각했습니다.
+          - task_id가 pk 이므로 `lookup_field=task_id`로 설정하는 것이 직관적이라고 생각했습니다.
 
   4. 배포 후 swagger ui 의 request url관련
     
@@ -666,9 +666,9 @@
 
         -  `$remote_addr`: 요청한 클라이언트 주소
 
-    - X-Forwarded-For: 클라이언트의 IP 주소, 이전에 프록시 서버가 또 있었다면 그 IP 를 의미
+      - X-Forwarded-For: 클라이언트의 IP 주소, 이전에 프록시 서버가 또 있었다면 그 IP 를 의미
 
-      -  **$proxy_add_x_forwarded_for**: 요청 헤더와 그 뒤에 따라오는 클라이언트의 원격 주소를 포함
+        -  **$proxy_add_x_forwarded_for**: 요청 헤더와 그 뒤에 따라오는 클라이언트의 원격 주소를 포함
 
     이 세가지를 추가 후 다시 배포한 결과
 
@@ -745,7 +745,7 @@
 
  -  [GET] <b>/research/{task_id}</b>
 
-	임상정보 상세데이터 가져오기(detail)
+	  임상정보 상세데이터 가져오기(detail)
 
 	- 원하는 과제번호(task_id)를 파라미터로 넣어 [Execute]합니다.
 		- ex) task_id = C130012
