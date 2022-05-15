@@ -450,11 +450,11 @@
 
     </details>
 
-    <details>
+  <details>
 
-    <summary>문제 -2</summary>
+  <summary>문제 -2</summary>
 
-    <div markdown="1">
+  <div markdown="1">
 
     <details>
 
