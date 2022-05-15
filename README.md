@@ -299,7 +299,7 @@
 
   <div markdown="1">
 
-    docker-compose시 api를 통해 `데이터 리스트를 조회하면 아무것도 나오지 않는(비어있는 db)` 문제가 생겼다
+  docker-compose시 api를 통해 `데이터 리스트를 조회하면 아무것도 나오지 않는(비어있는 db)` 문제가 생겼다
 
   </div>
 
@@ -335,73 +335,73 @@
       
   </details>
 
+  <details>
+
+  <summary>원인 분석</summary>
+
+  <div markdown="1">
+
+  - docker-compose시 나오는 로그를 전부 읽어보았다
+
+  - sql 파일로 db 초기셋팅하는 부분이 동작하지 않는 것을 알게되었다
+
     <details>
 
-    <summary>원인 분석</summary>
+    <summary>원인 -1</summary>
 
     <div markdown="1">
 
-    - docker-compose시 나오는 로그를 전부 읽어보았다
+      ```python
 
-    - sql 파일로 db 초기셋팅하는 부분이 동작하지 않는 것을 알게되었다
+      volumes:
 
-      <details>
+      - data:/var/lib/mysql/
 
-      <summary>원인 -1</summary>
+      - ./db_name.sql:/docker-entrypoint-initdb.d/db_name.sql
 
-      <div markdown="1">
+      ```
 
-        ```python
+      -  `/var/lib/mysql/`은 mysql 설치 폴더인데
 
-        volumes:
+      if문으로 mysql 폴더를 체크하고 없으면 initdb.d폴더를 확인해 초기 db를 불러들인다
 
-        - data:/var/lib/mysql/
+      `즉, data:/var/lib/mysql/ 이있으면 initdb.d가 동작을 안한다`
 
-        - ./db_name.sql:/docker-entrypoint-initdb.d/db_name.sql
+      - /var/lib/mysql/에 내가 쓰던 mysql을 넣었다면 database를 다 가져왔을 것이다 하지만 dockerhub의 image로 된 mysql을 가져와 비어있게되는데 이걸 놓쳤다
 
-        ```
+      - 또 compose 실행시 migrate를 하기때문에 스키마만 생성된것으로 추측된다
 
-        -  `/var/lib/mysql/`은 mysql 설치 폴더인데
+    </div>
 
-        if문으로 mysql 폴더를 체크하고 없으면 initdb.d폴더를 확인해 초기 db를 불러들인다
+    </details>
 
-        `즉, data:/var/lib/mysql/ 이있으면 initdb.d가 동작을 안한다`
+    <details>
 
-        - /var/lib/mysql/에 내가 쓰던 mysql을 넣었다면 database를 다 가져왔을 것이다 하지만 dockerhub의 image로 된 mysql을 가져와 비어있게되는데 이걸 놓쳤다
+    <summary>원인 -2</summary>
 
-        - 또 compose 실행시 migrate를 하기때문에 스키마만 생성된것으로 추측된다
+    <div markdown="1">
 
-      </div>
+      - `web_1 exited with code 1` 와 함께 project app 도커 실행이 중단된다
 
-      </details>
+      - mysql github issue에 같은 문제를 가진 사람이있었는데 초기화될때 뜨는 문구일 뿐이라고 한다
 
-      <details>
+      <img  src="https://user-images.githubusercontent.com/72593394/168459694-5dac6201-eeeb-43cb-987f-2928c937b8e0.png"  width="500"/>
 
-      <summary>원인 -2</summary>
+      신경안써도 된다고 하신다 ㅠㅠ
 
-      <div markdown="1">
+      - 뒤늦게 확인해보니
 
-        - `web_1 exited with code 1` 와 함께 project app 도커 실행이 중단된다
+        1.  `/var/lib/mysql/`가 없을때 db를 읽지 못해 에러를 발생
 
-        - mysql github issue에 같은 문제를 가진 사람이있었는데 초기화될때 뜨는 문구일 뿐이라고 한다
+        2. project app이 mysql과 연동 할 수 없어 실행이 중단
 
-        <img  src="https://user-images.githubusercontent.com/72593394/168459694-5dac6201-eeeb-43cb-987f-2928c937b8e0.png"  width="500"/>
+        3. mysql이 initdb를 읽어와 db를 생성
 
-        신경안써도 된다고 하신다 ㅠㅠ
+        4. 수동으로 project app을 다시 실행하면 정상으로 작동한다
 
-        - 뒤늦게 확인해보니
+    </div>
 
-          1.  `/var/lib/mysql/`가 없을때 db를 읽지 못해 에러를 발생
-
-          2. project app이 mysql과 연동 할 수 없어 실행이 중단
-
-          3. mysql이 initdb를 읽어와 db를 생성
-
-          4. 수동으로 project app을 다시 실행하면 정상으로 작동한다
-
-      </div>
-
-      </details>
+    </details>
 
     </div>
 
