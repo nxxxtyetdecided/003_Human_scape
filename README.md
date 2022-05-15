@@ -242,7 +242,9 @@
 
   <div markdown="1">
 
-  docker-compose시 api를 통해 `데이터 리스트를 조회하면 아무것도 나오지 않는(비어있는 db)` 문제가 생겼다
+    docker-compose시 api를 통해 `데이터 리스트를 조회하면 아무것도 나오지 않는(비어있는 db)` 문제가 생겼다
+
+  </div>
 
   <details>
 
