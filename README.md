@@ -737,7 +737,7 @@
 
 프로젝트를 Docker를 이용해 컨테이너화 해 EC2에 배포했습니다
 
-[API Link](http://http://44.202.87.184/api/research)
+[API Link](http://44.202.87.184/api/research)
 
   
   
