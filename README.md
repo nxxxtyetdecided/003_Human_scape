@@ -737,14 +737,14 @@
 
 프로젝트를 Docker를 이용해 컨테이너화 해 EC2에 배포했습니다
 
-[API Link](http://52.78.198.214/api/research)
+[API Link](http://http://44.202.87.184/api/research)
 
   
   
 
 ## 🎫 API 명세서
 
- [Swagger(API문서) Link](http://52.78.198.214/swagger/)
+ [Swagger(API문서) Link](http://44.202.87.184/swagger/)
 <details>
 
 <summary>API 실행 가이드</summary>
