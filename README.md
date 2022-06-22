@@ -735,7 +735,8 @@
 
 ## 🔥 배포
 
-프로젝트를 Docker를 이용해 컨테이너화 해 EC2에 배포했습니다
+프로젝트를 Docker를 이용해 컨테이너화 해 EC2에 배포했습니다  
+AWS 요금 문제로 배포가 중지 될 수 있습니다  
 
 [API Link](http://44.202.87.184/api/research)
 
@@ -743,6 +744,8 @@
   
 
 ## 🎫 API 명세서
+	
+AWS 요금 문제로 배포가 중지 될 수 있습니다  	
 
  [Swagger(API문서) Link](http://44.202.87.184/swagger/)
 <details>
